@@ -1,5 +1,3 @@
-// src/repositories/user.repository.ts
-
 import { Pool } from "pg";
 
 const pool = new Pool({
@@ -31,7 +29,6 @@ const pool = new Pool({
  *   [true]
  * );
  *
- * console.log(activeUsers); // activeUsers é um array de User[]
  */
 
 async function query<T>(text: string, params?: unknown[]): Promise<T[]> {
