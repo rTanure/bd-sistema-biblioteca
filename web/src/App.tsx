@@ -1,11 +1,14 @@
-import { Button } from "./components/ui/button"
+import { ThemeProvider } from "./components/theme-provider"
 import "./index.css"
+import Theme from "./modules/theme"
 
 function App() {
+  
+
   return (
-    <div>
-      <Button>Teste</Button>
-    </div>
+    <ThemeProvider>
+      <Theme />
+    </ThemeProvider>
   )
 }
 
