@@ -1,5 +1,12 @@
+import { Button } from "./components/ui/button"
+import "./index.css"
+
 function App() {
-  return null
+  return (
+    <div>
+      <Button>Teste</Button>
+    </div>
+  )
 }
 
 export default App
