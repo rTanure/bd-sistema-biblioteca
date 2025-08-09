@@ -26,7 +26,7 @@ const pool = new Pool({
  * }
  *
  * // Consulta usuários ativos no banco
- * const activeUsers = await query<User>(
+ * const activeUsers = await <User>(
  *   "SELECT id, name, email FROM users WHERE active = $1",
  *   [true]
  * );
@@ -38,6 +38,26 @@ export async function executeQuery<T>(text: string, params?: unknown[]): Promise
   try {
     const res = await client.query(text, params);
     return res.rows as T[];
+  } finally {
+    client.release();
+  }
+}
+
+/**
+ * Executa uma consulta SQL no banco de dados PostgreSQL que não retorna linhas (ex: INSERT, UPDATE, DELETE sem RETURNING).
+ *
+ * @param {string} text - A string da query SQL, com placeholders `$1, $2, ...` para parâmetros.
+ * @param {unknown[]} [params] - Array opcional de valores para substituir os placeholders na query.
+ * @returns {Promise<void>} - Uma Promise que resolve quando a query for executada com sucesso, sem retorno de dados.
+ *
+ * @example
+ * // Exemplo de uso: deletar um usuário pelo ID
+ * await executeQueryNoReturn("DELETE FROM users WHERE id = $1", [userId]);
+ */
+export async function executeQueryNoReturn(text: string, params?: unknown[]): Promise<void> {
+  const client = await pool.connect();
+  try {
+    await client.query(text, params);
   } finally {
     client.release();
   }
