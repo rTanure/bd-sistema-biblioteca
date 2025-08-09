@@ -33,7 +33,7 @@ const pool = new Pool({
  *
  */
 
-export async function query<T>(text: string, params?: unknown[]): Promise<T[]> {
+export async function executeQuery<T>(text: string, params?: unknown[]): Promise<T[]> {
   const client = await pool.connect();
   try {
     const res = await client.query(text, params);
