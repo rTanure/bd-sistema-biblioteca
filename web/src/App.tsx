@@ -1,14 +1,13 @@
 import { ThemeProvider } from "./components/theme-provider"
 import "./index.css"
-import Login from "./modules/auth/login"
-import Theme from "./modules/theme"
+import { AuthLayout } from "./modules/auth/auth-layout"
 
 function App() {
   
 
   return (
     <ThemeProvider>
-      <Login />
+      <AuthLayout />
     </ThemeProvider>
   )
 }

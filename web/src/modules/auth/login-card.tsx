@@ -3,9 +3,9 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-export default function Login() {
+export default function LoginCard() {
   return (
-    <Card className="w-full max-w-sm m-auto mt-32">
+    <Card className="w-full max-w-sm">
       <CardHeader>
         <CardTitle>Entre com a sua conta</CardTitle>
         <CardDescription>
