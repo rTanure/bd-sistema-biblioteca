@@ -17,3 +17,27 @@ export const CREATE_USUARIO_TABLE = `
            ON DELETE CASCADE ON UPDATE CASCADE
    );
 `;
+
+const INSERT_USUARIO = `
+  INSERT INTO usuario ( data_cadastro, status_conta)
+  VALUES ($1, $2)
+  RETURNING *;
+`;
+
+const SELECT_USUARIO_BY_ID = `
+  SELECT * FROM usuario 
+  WHERE id_pessoa = $1;
+`;
+
+const UPDATE_USUARIO = `
+  UPDATE usuario 
+  SET data_cadastro = $2, status_conta= $3
+  WHERE id_pessoa = $1
+  RETURNING *;
+`;
+
+const DELETE_USUARIO = `
+  DELETE FROM usuario 
+  WHERE id_pessoa = $1
+  RETURNING *;
+`;
