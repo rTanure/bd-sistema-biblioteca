@@ -1,4 +1,4 @@
-export interface BIBLIOTECARIO {
+export interface bibliotecario {
  id_pessoa: number;
  area_especializacao: string;
  crb_numero: string;

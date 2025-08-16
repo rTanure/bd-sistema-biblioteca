@@ -1,12 +1,13 @@
-export interface USUARIO {
- ID_Pessoa: number;  
- ID_leitor: number;
- Data_cadastro: string;
- Status_conta: 'Ativo' | 'Inativo' | 'Suspenso' | 'Bloqueado';
+export interface usuario{
+ id_pessoa: number;  
+ id_leitor: number;
+ data_cadastro: string;
+ status_conta: string;
 }
 
 export const CREATE_USUARIO_TABLE = `
-   id_pessoa INTEGER PRIMARY KEY,
+   CREATE TABLE IF NOT EXISTS usuario (
+       id_pessoa INTEGER PRIMARY KEY,
        id_leitor SERIAL NOT NULL UNIQUE,
        data_cadastro DATE NOT NULL DEFAULT CURRENT_DATE,
        status_conta VARCHAR(20) DEFAULT 'Ativo' 

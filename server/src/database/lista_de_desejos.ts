@@ -1,10 +1,10 @@
-export interface LISTA_DE_DESEJOS {
+export interface lista_de_desejos {
  id_usuario: number;
  nome_lista: string;
 }
 
 export const CREATE_LISTA_DE_DESEJOS_TABLE = `
-   CREATE TABLE IF NOT EXISTS LISTA_DE_DESEJOS (
+   CREATE TABLE IF NOT EXISTS lista_de_desejos (
        id_usuario INTEGER primary key,
        nome_lista VARCHAR(100) NOT NULL DEFAULT 'Minha Lista de Desejos',
        CONSTRAINT fk_lista_usuario 
