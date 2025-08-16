@@ -1,3 +1,7 @@
+/**
+ * Interface para a Publicação, agora incluindo os campos
+ * que representam quem cadastrou a publicação e quando.
+ */
 export interface Publicacao {
   id_publicacao: number;
   titulo: string;
@@ -7,7 +11,11 @@ export interface Publicacao {
   edicao: string;
   numero_paginas: number;
   genero: string;
+  id_doacao: number;
+  id_pessoa: number; 
+  data_cadastro?: string;
 }
+
 
 export const CREATE_PUBLICACAO_TABLE = `
     CREATE TABLE IF NOT EXISTS publicacao (
@@ -18,13 +26,26 @@ export const CREATE_PUBLICACAO_TABLE = `
         ano_publicacao INTEGER NOT NULL,
         edicao VARCHAR(50),
         numero_paginas INTEGER,
-        genero VARCHAR(100)
+        genero VARCHAR(100),
+
+        id_doacao INTEGER NOT NULL,
+
+        id_bibliotecario_cadastro INT,
+        data_cadastro DATE DEFAULT CURRENT_DATE,
+
+        -- Definição das chaves estrangeiras
+        FOREIGN KEY (id_doacao) REFERENCES doacao(id_doacao),
+        FOREIGN KEY (id_pessoa) REFERENCES bibliotecario(id_pessoa)
     );
 `;
 
+
 export const CREATE_PUBLICACAO = `
-    INSERT INTO publicacao (titulo, autor, editora, ano_publicacao, edicao, numero_paginas, genero)
-    VALUES ($1, $2, $3, $4, $5, $6, $7)
+    INSERT INTO publicacao (
+        titulo, autor, editora, ano_publicacao, edicao, 
+        numero_paginas, genero, id_doacao, id_pessoa
+    )
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
     RETURNING *;
 `;
 
@@ -39,7 +60,8 @@ export const GET_ALL_PUBLICACOES = `
 export const UPDATE_PUBLICACAO = `
     UPDATE publicacao 
     SET titulo = $2, autor = $3, editora = $4, ano_publicacao = $5, 
-        edicao = $6, numero_paginas = $7, genero = $8
+        edicao = $6, numero_paginas = $7, genero = $8, id_doacao = $9,
+        id_bibliotecario_cadastro = $10, data_cadastro = $11
     WHERE id_publicacao = $1
     RETURNING *;
 `;
