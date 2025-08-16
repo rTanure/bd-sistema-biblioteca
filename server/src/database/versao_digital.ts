@@ -9,9 +9,9 @@ export interface VersaoDigital {
 export const CREATE_VERSAO_DIGITAL_TABLE = `
     CREATE TABLE IF NOT EXISTS versao_digital (
         id_versao_digital SERIAL PRIMARY KEY,
-        id_exemplar INT NOT NULL UNIQUE, -- UNIQUE garante a relação 1-para-1 com exemplar
+        id_exemplar INT NOT NULL UNIQUE,
         formato_arquivo VARCHAR(20),
-        tamanho_arquivo_mb NUMERIC(10, 2), -- Usar NUMERIC para tamanhos de arquivo é uma boa prática
+        tamanho_arquivo_mb NUMERIC(10, 2),
         url_acesso TEXT NOT NULL,
         FOREIGN KEY (id_exemplar) REFERENCES exemplar(id_exemplar) ON DELETE CASCADE
     );
