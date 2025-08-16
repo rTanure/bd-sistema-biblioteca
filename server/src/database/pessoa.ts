@@ -24,6 +24,12 @@ export const INSERT_PESSOA = `
   RETURNING *;
 `;
 
+
+export const FIND_BY_EMAIL = `
+  SELECT * FROM pessoa 
+  WHERE e_mail = $1;
+`
+
 export const SELECT_PESSOA_BY_ID = `
   SELECT * FROM pessoa 
   WHERE id = $1;

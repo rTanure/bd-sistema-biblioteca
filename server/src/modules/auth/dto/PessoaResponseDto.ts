@@ -3,6 +3,6 @@ export interface PessoaResponseDto {
     cpf: string;
     nome: string;
     dataNascimento: string;
-    email: string;
+    e_mail: string;
     senha: string;
 }

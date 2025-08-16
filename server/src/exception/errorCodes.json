@@ -4,7 +4,8 @@
     "entity": "CODIGO_DE_ENTITY_NOT_FOUND"
   },
   "badRequest": {
-    "validation": "VALIDATION_ERROR"
+    "validation": "VALIDATION_ERROR",
+    "entityCreation": "ENTITY_CREATION_FAILED"
   },
   "auth":{
     "unauthorized": "UNAUTHORIZED_ACCESS",

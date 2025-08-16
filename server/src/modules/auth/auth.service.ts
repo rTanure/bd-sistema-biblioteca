@@ -4,23 +4,19 @@ import { LoginResponseDto} from './dto/LoginResponseDto';
 import { LoginDto } from './dto/LoginDto';
 import { generateLoginResponse } from './utils/authUtils';
 import { executeQuerySingleResult} from '../../database/queries';
-import { Pessoa } from '../../database/pessoa';
+import { Pessoa,INSERT_PESSOA, FIND_BY_EMAIL} from '../../database/pessoa';
 import { PessoaCreateDto } from './dto/PessoaCreateDto';
-
-
-const findUser= 'find entity'
-const createPessoa= 'create pessoa'
 
 export class AuthService {
 
     async login(userInfo:LoginDto):Promise<LoginResponseDto> {
-        const user = await executeQuerySingleResult<Pessoa>(findUser);
+        const user = await executeQuerySingleResult<Pessoa>(FIND_BY_EMAIL, [userInfo.e_mail]);
 
         if (!user) {
             throw new InvalidCredentialsError();
         }
 
-        const isMatch = await bcrypt.compare(userInfo.password, user.senha);
+        const isMatch = await bcrypt.compare(userInfo.senha, user.senha);
 
         if (!isMatch) {
             throw new InvalidCredentialsError();
@@ -33,7 +29,7 @@ export class AuthService {
         const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash(data.senha, salt);      
         data.senha = hashPassword;
-        const user = await executeQuerySingleResult<Pessoa>(createPessoa);
+        const user = await executeQuerySingleResult<Pessoa>(INSERT_PESSOA,[data.nome,data.dataNascimento,data.email, data.cpf, data.senha]);
         const response = generateLoginResponse(user)
         return response;
     }

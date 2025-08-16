@@ -7,8 +7,8 @@ export interface Usuario{
 
 export const CREATE_USUARIO_TABLE = `
    CREATE TABLE IF NOT EXISTS usuario (
-       id_pessoa INTEGER PRIMARY KEY,
-       id_leitor SERIAL NOT NULL UNIQUE,
+       id_leitor SERIAL PRIMARY KEY,
+        id_pessoa INTEGER NOT NULL UNIQUE,
        data_cadastro DATE NOT NULL DEFAULT CURRENT_DATE,
        status_conta VARCHAR(20) DEFAULT 'Ativo' 
            CHECK (status_conta IN ('Ativo', 'Inativo', 'Suspenso', 'Bloqueado')),
@@ -19,8 +19,9 @@ export const CREATE_USUARIO_TABLE = `
 `;
 
 export const INSERT_USUARIO = `
-  INSERT INTO usuario ( data_cadastro, status_conta)
-  VALUES ($1, $2)
+
+  INSERT INTO usuario ( id_pessoa, data_cadastro, status_conta)
+  VALUES ($1, $2, $3)
   RETURNING *;
 `;
 
