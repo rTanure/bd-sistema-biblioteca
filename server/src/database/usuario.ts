@@ -7,8 +7,8 @@ export interface Usuario{
 
 export const CREATE_USUARIO_TABLE = `
    CREATE TABLE IF NOT EXISTS usuario (
-       id_pessoa INTEGER PRIMARY KEY,
-       id_leitor SERIAL NOT NULL UNIQUE,
+       id_leitor SERIAL PRIMARY KEY,
+        id_pessoa INTEGER NOT NULL UNIQUE,
        data_cadastro DATE NOT NULL DEFAULT CURRENT_DATE,
        status_conta VARCHAR(20) DEFAULT 'Ativo' 
            CHECK (status_conta IN ('Ativo', 'Inativo', 'Suspenso', 'Bloqueado')),
@@ -18,25 +18,25 @@ export const CREATE_USUARIO_TABLE = `
    );
 `;
 
-const INSERT_USUARIO = `
-  INSERT INTO usuario ( data_cadastro, status_conta)
-  VALUES ($1, $2)
+export const INSERT_USUARIO = `
+  INSERT INTO usuario ( id_pessoa, data_cadastro, status_conta)
+  VALUES ($1, $2, $3)
   RETURNING *;
 `;
 
-const SELECT_USUARIO_BY_ID = `
+export const SELECT_USUARIO_BY_ID = `
   SELECT * FROM usuario 
   WHERE id_pessoa = $1;
 `;
 
-const UPDATE_USUARIO = `
+export const UPDATE_USUARIO = `
   UPDATE usuario 
   SET data_cadastro = $2, status_conta= $3
   WHERE id_pessoa = $1
   RETURNING *;
 `;
 
-const DELETE_USUARIO = `
+export const DELETE_USUARIO = `
   DELETE FROM usuario 
   WHERE id_pessoa = $1
   RETURNING *;

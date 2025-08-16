@@ -20,25 +20,30 @@ export const CREATE_PESSOA_TABLE = `
    );
 `;
 
-const INSERT_PESSOA = `
+export const INSERT_PESSOA = `
   INSERT INTO pessoa (nome, data_de_nascimento, e_mail, cpf, senha)
   VALUES ($1, $2, $3, $4, $5)
   RETURNING *;
 `;
 
-const SELECT_PESSOA_BY_ID = `
+export const FIND_BY_EMAIL = `
+  SELECT * FROM pessoa 
+  WHERE e_mail = $1;
+`
+
+export const SELECT_PESSOA_BY_ID = `
   SELECT * FROM pessoa 
   WHERE id = $1;
 `;
 
-const UPDATE_PESSOA = `
+export const UPDATE_PESSOA = `
   UPDATE pessoa 
   SET nome = $2, data_de_nascimento = $3, e_mail = $4, cpf = $5, senha = $6
   WHERE id = $1
   RETURNING *;
 `;
 
-const DELETE_PESSOA = `
+export const DELETE_PESSOA = `
   DELETE FROM pessoa 
   WHERE id = $1
   RETURNING *;
