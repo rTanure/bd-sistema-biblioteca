@@ -1,4 +1,4 @@
-export interface secretario {
+export interface Secretario {
  id_pessoa: number;   
  area_atuacao: string;
  ramal_telefonico: string;

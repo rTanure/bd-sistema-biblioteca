@@ -1,4 +1,4 @@
-export interface usuario{
+export interface Usuario{
  id_pessoa: number;  
  id_leitor: number;
  data_cadastro: string;

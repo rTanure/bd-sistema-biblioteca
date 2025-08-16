@@ -1,4 +1,4 @@
-export interface funcionario {
+export interface Funcionario {
  id_pessoa: number;
  matricula: string;
  data_admissao: string;

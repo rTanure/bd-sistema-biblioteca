@@ -1,4 +1,4 @@
-export interface lista_de_desejos {
+export interface Lista_de_desejos {
  id_usuario: number;
  nome_lista: string;
 }

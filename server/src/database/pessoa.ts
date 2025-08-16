@@ -1,4 +1,4 @@
-export interface pessoa {
+export interface Pessoa {
  id: number;
  nome: string;
  data_de_nascimento: string;
