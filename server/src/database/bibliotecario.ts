@@ -10,7 +10,7 @@ export const CREATE_BIBLIOTECARIO_TABLE = `
    CREATE TABLE IF NOT EXISTS BIBLIOTECARIO (
        ID_Pessoa INTEGER PRIMARY KEY,
        Area_especializacao VARCHAR(100),
-       CRB_numero VARCHAR(20) UNIQUE NOT NULL, -- CRB deve ser obrigatório
+       CRB_numero VARCHAR(20) UNIQUE NOT NULL,
        Descricao_especializacao TEXT,
        
        CONSTRAINT FK_Bibliotecario_Funcionario 
