@@ -19,19 +19,19 @@ export const INSERT_LISTA = `
   RETURNING *;
 `;
 
-export const SELECT_SECRETARIO_BY_ID = `
+export const SELECT_LISTA_BY_ID = `
   SELECT * FROM lista_de_desejos 
   WHERE id_usuario = $1;
 `;
 
-export const UPDATE_SECRETARIO = `
+export const UPDATE_LISTA = `
   UPDATE lista_de_desejos 
   SET nome_lista = $2
   WHERE id_usuario = $1
   RETURNING *;
 `;
 
-export const DELETE_SECRETARIO = `
+export const DELETE_LISTA = `
   DELETE FROM lista_de_desejos  
   WHERE id_usuario = $1
   RETURNING *;
