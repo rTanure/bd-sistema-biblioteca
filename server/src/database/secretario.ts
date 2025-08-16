@@ -19,25 +19,25 @@ export const CREATE_SECRETARIO_TABLE = `
    );
 `;
 
-const INSERT_SECRETARIO = `
+export const INSERT_SECRETARIO = `
   INSERT INTO secretario (area_atuacao, ramal_telefonico, nivel_acesso_sistema)
   VALUES ($1, $2, $3)
   RETURNING *;
 `;
 
-const SELECT_SECRETARIO_BY_ID = `
+export const SELECT_SECRETARIO_BY_ID = `
   SELECT * FROM secretario 
   WHERE id_pessoa = $1;
 `;
 
-const UPDATE_SECRETARIO = `
+export const UPDATE_SECRETARIO = `
   UPDATE secretario 
   SET area_atuacao = $2, ramal_telefonico = $3, nivel_acesso_sistema = $4
   WHERE id_pessoa = $1
   RETURNING *;
 `;
 
-const DELETE_SECRETARIO = `
+export const DELETE_SECRETARIO = `
   DELETE FROM secretario 
   WHERE id_pessoa = $1
   RETURNING *;

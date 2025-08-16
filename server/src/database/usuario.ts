@@ -19,6 +19,7 @@ export const CREATE_USUARIO_TABLE = `
 `;
 
 export const INSERT_USUARIO = `
+
   INSERT INTO usuario ( id_pessoa, data_cadastro, status_conta)
   VALUES ($1, $2, $3)
   RETURNING *;

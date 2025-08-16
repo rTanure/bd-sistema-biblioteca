@@ -22,25 +22,25 @@ export const CREATE_FUNCIONARIO_TABLE = `
    );
 `;
 
-const INSERT_FUNCIONARIO = `
+export const INSERT_FUNCIONARIO = `
   INSERT INTO funcionario (matricula, data_admissao, salario, turno, cargo)
   VALUES ($1, $2, $3, 4$, 5$)
   RETURNING *;
 `;
 
-const SELECT_FUNCIONARIO_BY_ID = `
+export const SELECT_FUNCIONARIO_BY_ID = `
   SELECT * FROM funcionario 
   WHERE id_pessoa = $1;
 `;
 
-const UPDATE_FUNCIONARIO = `
+export const UPDATE_FUNCIONARIO = `
   UPDATE funcionario 
   SET salario = $3, turno = $4
   WHERE id_pessoa = $1
   RETURNING *;
 `;
 
-const DELETE_FUNCIONARIO = `
+export const DELETE_FUNCIONARIO = `
   DELETE FROM funcionario  
   WHERE id_pessoa = $1
   RETURNING *;

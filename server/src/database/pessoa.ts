@@ -3,7 +3,6 @@ export interface Pessoa {
  nome: string;
  data_de_nascimento: string;
  e_mail: string;
- idade: number;
  cpf: string;
  senha: string;
 }
@@ -14,7 +13,6 @@ export const CREATE_PESSOA_TABLE = `
        nome VARCHAR(100) NOT NULL,
        data_de_nascimento DATE,
        e_mail VARCHAR(100) UNIQUE,
-       idade INTEGER CHECK (idade >= 0 AND idade <= 150),
        cpf VARCHAR(11) UNIQUE NOT NULL, 
        senha VARCHAR(255) NOT NULL
    );
@@ -25,6 +23,7 @@ export const INSERT_PESSOA = `
   VALUES ($1, $2, $3, $4, $5)
   RETURNING *;
 `;
+
 
 export const FIND_BY_EMAIL = `
   SELECT * FROM pessoa 
@@ -47,4 +46,10 @@ export const DELETE_PESSOA = `
   DELETE FROM pessoa 
   WHERE id = $1
   RETURNING *;
+`;
+
+export const IDADE_PESSOA = `
+  SELECT *,
+    EXTRACT(YEAR FROM AGE(CURRENT_DATE, data_de_nascimento)) AS idade
+  FROM pessoa;
 `;
