@@ -33,11 +33,42 @@ const pool = new Pool({
  *
  */
 
-export async function executeQuery<T>(text: string, params?: unknown[]): Promise<T[]> {
+export async function executeQueryMultipleResults<T>(text: string, params?: unknown[]): Promise<T[]> {
   const client = await pool.connect();
   try {
     const res = await client.query(text, params);
     return res.rows as T[];
+  } finally {
+    client.release();
+  }
+}
+
+/**
+ * Executa uma consulta SQL no banco de dados PostgreSQL e retorna apenas um registro.
+ *
+ * @template T - Tipo do objeto que será retornado.
+ * @param {string} text - A string da query SQL, com placeholders `$1, $2, ...` para parâmetros.
+ * @param {unknown[]} [params] - Array opcional de valores para substituir os placeholders na query.
+ * @returns {Promise<T | null>} - Uma Promise que resolve para um objeto do tipo `T` ou `null` se não houver resultados.
+ *
+ * @example
+ * interface User {
+ *   id: number;
+ *   name: string;
+ *   email: string;
+ * }
+ *
+ * // Consulta um usuário pelo ID
+ * const user = await executeQueryOne<User>(
+ *   "SELECT id, name, email FROM users WHERE id = $1",
+ *   [1]
+ * );
+ */
+export async function executeQuerySingleResult<T>(text: string, params?: unknown[]): Promise<T | null> {
+  const client = await pool.connect();
+  try {
+    const res = await client.query(text, params);
+    return res.rows[0] ?? null; // retorna o primeiro registro ou null
   } finally {
     client.release();
   }
