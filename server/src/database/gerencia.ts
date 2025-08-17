@@ -14,7 +14,6 @@ export const CREATE_GERENCIA_TABLE = `
         observacao TEXT,
         descricao TEXT,
         PRIMARY KEY (id_pessoa, id_publicacao),
-
         FOREIGN KEY (id_pessoa) REFERENCES bibliotecario(id_pessoa) ON DELETE CASCADE,
         FOREIGN KEY (id_publicacao) REFERENCES publicacao(id_publicacao) ON DELETE CASCADE
     );

@@ -1,7 +1,3 @@
-/**
- * Interface para a Publicação, agora incluindo os campos
- * que representam quem cadastrou a publicação e quando.
- */
 export interface Publicacao {
   id_publicacao: number;
   titulo: string;
@@ -13,7 +9,6 @@ export interface Publicacao {
   genero: string;
   id_doacao: number;
   id_pessoa: number; 
-  data_cadastro?: string;
 }
 
 
@@ -27,13 +22,9 @@ export const CREATE_PUBLICACAO_TABLE = `
         edicao VARCHAR(50),
         numero_paginas INTEGER,
         genero VARCHAR(100),
-
         id_doacao INTEGER NOT NULL,
-
         id_bibliotecario_cadastro INT,
         data_cadastro DATE DEFAULT CURRENT_DATE,
-
-        -- Definição das chaves estrangeiras
         FOREIGN KEY (id_doacao) REFERENCES doacao(id_doacao),
         FOREIGN KEY (id_pessoa) REFERENCES bibliotecario(id_pessoa)
     );
