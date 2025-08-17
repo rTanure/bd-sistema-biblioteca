@@ -1,16 +1,13 @@
-import DashboardLayout from "./components/dashboard-layout"
 import { ThemeProvider } from "./components/theme-provider"
 import "./index.css"
-import { AuthLayout } from "./modules/auth/auth-layout"
+import { AppRoutes } from "./routes/AppRoutes"
 
 function App() {
   
 
   return (
     <ThemeProvider>
-      <DashboardLayout>
-        <AuthLayout />
-      </DashboardLayout>
+      <AppRoutes />
     </ThemeProvider>
   )
 }
