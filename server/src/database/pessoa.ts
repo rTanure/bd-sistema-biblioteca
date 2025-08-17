@@ -14,7 +14,11 @@ export const CREATE_PESSOA_TABLE = `
        data_de_nascimento DATE,
        e_mail VARCHAR(100) UNIQUE,
        cpf VARCHAR(11) UNIQUE NOT NULL, 
-       senha VARCHAR(255) NOT NULL
+       senha VARCHAR(255) NOT NULL,
+       ID_Doador INT NOT NULL UNIQUE
+       CONSTRAINT fk_pessoa_doador
+        FOREIGN KEY (ID_Doador) REFERENCES DOADOR(ID_Doador)
+        ON DELETE CASCADE ON UPDATE CASCADE
    );
 `;
 
