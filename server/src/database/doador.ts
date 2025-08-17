@@ -9,10 +9,6 @@ export const CREATE_DOADOR_TABLE = `
     ID_Doador SERIAL PRIMARY KEY,
     Tipo_pessoa VARCHAR(20) NOT NULL,
     Recebe_informativos BOOLEAN DEFAULT TRUE,
-    CONSTRAINT chk_tipo_doador CHECK (
-      (Tipo_pessoa = 'PESSOA_FISICA' AND ID_Pessoa IS NOT NULL AND ID_Orgao IS NULL) OR
-      (Tipo_pessoa = 'PESSOA_JURIDICA' AND ID_Orgao IS NOT NULL AND ID_Pessoa IS NULL)
-    )
   );
 `;
 
