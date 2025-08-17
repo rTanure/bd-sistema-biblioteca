@@ -11,7 +11,6 @@ export const CREATE_DOACAO_TABLE = `
     ID_Doador INTEGER NOT NULL,
     Data_hora_doacao TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     Descricao TEXT,
-    
     CONSTRAINT fk_doacao_doador
       FOREIGN KEY (ID_Doador) 
       REFERENCES DOADOR(ID_Doador)

@@ -18,13 +18,10 @@ export const CREATE_EMPRESTIMO_TABLE = `
     Data_real_devolucao TIMESTAMP WITH TIME ZONE,
     Status VARCHAR(10) NOT NULL DEFAULT 'ATIVO' CHECK (Status IN ('ATIVO', 'DEVOLVIDO', 'ATRASADO')),
     Valor_multa NUMERIC(10, 2) DEFAULT 0.00,
-
     CONSTRAINT pk_emprestimo PRIMARY KEY (ID_Usuario, ID_Publicacao, Data_emprestimo),
-
     CONSTRAINT fk_emprestimo_usuario
       FOREIGN KEY (ID_Usuario) REFERENCES USUARIO(ID_Usuario)
       ON DELETE RESTRICT ON UPDATE CASCADE,
-
     CONSTRAINT fk_emprestimo_publicacao
       FOREIGN KEY (ID_Publicacao) REFERENCES PUBLICACAO(ID_Publicacao)
       ON DELETE RESTRICT ON UPDATE CASCADE

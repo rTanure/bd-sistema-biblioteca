@@ -7,14 +7,11 @@ export const CREATE_CONTEM_TABLE = `
   CREATE TABLE IF NOT EXISTS CONTEM (
     ID_Lista INTEGER NOT NULL,
     ID_Publicacao INTEGER NOT NULL,
-    
     CONSTRAINT pk_contem PRIMARY KEY (ID_Lista, ID_Publicacao),
-    
     CONSTRAINT fk_contem_lista 
       FOREIGN KEY (ID_Lista) 
       REFERENCES LISTA_DE_DESEJOS(ID_Lista) 
       ON DELETE CASCADE ON UPDATE CASCADE,
-      
     CONSTRAINT fk_contem_publicacao 
       FOREIGN KEY (ID_Publicacao) 
       REFERENCES PUBLICACAO(ID_Publicacao) 
