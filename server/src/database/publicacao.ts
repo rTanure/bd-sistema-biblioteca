@@ -23,6 +23,7 @@ export const CREATE_PUBLICACAO_TABLE = `
         numero_paginas INTEGER,
         genero VARCHAR(100),
         id_doacao INTEGER NOT NULL,
+        id_pessoa INTEGER NOT NULL,
         id_bibliotecario_cadastro INT,
         data_cadastro DATE DEFAULT CURRENT_DATE,
         FOREIGN KEY (id_doacao) REFERENCES doacao(id_doacao),
