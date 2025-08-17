@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 
 export default function LoginCard() {
   return (
-    <Card className="w-full max-w-sm">
+    <Card className="w-full max-w-sm max-w-sm mx-auto">
       <CardHeader>
         <CardTitle>Entre com a sua conta</CardTitle>
         <CardDescription>

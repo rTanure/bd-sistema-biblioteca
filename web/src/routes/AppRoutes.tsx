@@ -1,4 +1,5 @@
 import Layout from "@/components/layout";
+import { Toaster } from "@/components/ui/sonner";
 import { authRoutes } from "@/modules/auth/auth.routes";
 import { BrowserRouter, useRoutes } from "react-router-dom";
 
@@ -21,6 +22,7 @@ export function AppRoutes() {
   return (
     <BrowserRouter>
       <RoutesWrapper />
+      <Toaster />
     </BrowserRouter>
   );
 }

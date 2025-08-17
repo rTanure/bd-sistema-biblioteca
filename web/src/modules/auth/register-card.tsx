@@ -5,17 +5,35 @@ import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useForm } from "react-hook-form";
 import type { PessoaCreateDto } from "../../../../server/src/modules/auth/dto/PessoaCreateDto";
+import { useAuthStore } from "@/hooks/stores/use-auth-store";
+import { Activity, ActivityIcon, LoaderCircle } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
 
 export default function RegisterCard() {
+  const { register: registerUser } = useAuthStore()
+  const [isLoading, setIsLoading] = useState(false)
+
 
   const { register, handleSubmit } = useForm<PessoaCreateDto>()
 
   const onSubmit = (data: PessoaCreateDto) => {
-    console.log(data)
+
+    setIsLoading(true)
+    registerUser(data)
+      .then(() => {})
+      .catch((error) => {
+        toast("Erro ao registrar usuário", {
+          closeButton: true,
+        })
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
   }
 
   return (
-    <Card className="w-full max-w-screen">
+    <Card className="w-full max-w-3xl mx-auto">
       <form onSubmit={handleSubmit(onSubmit)}>
         <CardHeader>
           <CardTitle>Crie sua conta</CardTitle>
@@ -24,9 +42,9 @@ export default function RegisterCard() {
           </CardDescription>
         </CardHeader>
         <CardContent className="py-4">
-          
-            <ScrollArea className="flex flex-col max-h-64">
-              <div className="grid gap-2 mb-6">
+          <ScrollArea>
+            <div className="grid grid-cols-4 gap-6">
+              <div className="grid gap-2 col-span-2">
                 <Label htmlFor="name">Nome completo</Label>
                 <Input
                   id="name"
@@ -36,27 +54,29 @@ export default function RegisterCard() {
                   required
                 />
               </div>
-              <div className="grid gap-2 mb-6">
+
+              <div className="grid gap-2">
                 <Label htmlFor="dataNascimento">Data de Nascimento</Label>
                 <Input
                   id="dataNascimento"
                   type="date"
-                  placeholder="DD/MM/AAAA"
                   {...register("dataNascimento")}
                   required
                 />
               </div>
-              <div className="grid gap-2 mb-6">
+
+              <div className="grid gap-2">
                 <Label htmlFor="cpf">CPF</Label>
                 <Input
-                  id="name"
+                  id="cpf"
                   type="text"
                   placeholder="XXX.XXX.XXX-XX"
                   {...register("cpf")}
                   required
                 />
               </div>
-              <div className="grid gap-2 mb-6">
+
+              <div className="grid gap-2 col-span-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
                   id="email"
@@ -66,7 +86,8 @@ export default function RegisterCard() {
                   required
                 />
               </div>
-              <div className="grid gap-2 mb-6">
+
+              <div className="grid gap-2 col-span-2">
                 <Label htmlFor="senha">Senha</Label>
                 <Input
                   id="senha"
@@ -76,12 +97,17 @@ export default function RegisterCard() {
                   required
                 />
               </div>
-            </ScrollArea>
-          
+            </div>
+          </ScrollArea>
         </CardContent>
+
         <CardFooter className="flex-col gap-2">
-          <Button type="submit" className="w-full">
-            Registrar
+          <Button type="submit" className="w-full" disabled={isLoading}>
+            {isLoading ? (
+              <LoaderCircle className="animate-spin" />
+            ) : (
+              "Registrar"
+            )}
           </Button>
         </CardFooter>
       </form>
