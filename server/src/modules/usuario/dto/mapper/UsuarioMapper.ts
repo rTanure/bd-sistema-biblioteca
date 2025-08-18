@@ -13,18 +13,13 @@ export class UsuarioMapper{
         return(dto)
     }
 
-    static  atualizarUsuario(usuario: UsuarioUpdateDto){
+    static  atualizarUsuario(usuarioDb: Usuario, usuarioAtualizado: UsuarioUpdateDto){
         
-        const usuarioAtualizado : Usuario = {
-            id_pessoa: usuario.id_pessoa,
-            id_leitor: usuario.id_pessoa,
-            data_cadastro: usuario.data_cadastro,
-            status_conta: usuario.status_conta
+        const response: Usuario = {
+            ...usuarioDb,
+            ...usuarioAtualizado
         }
-        return(usuarioAtualizado)
+        return(response)
     }
-
-
-
 }
 
