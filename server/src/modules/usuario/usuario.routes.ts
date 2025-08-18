@@ -20,3 +20,5 @@ router.put("/:id", async (req: Request, res: Response)=>{
 router.delete("/:id", async (req: Request, res: Response)=>{
     await deleteUser(req, res);
 });
+
+export default router; 

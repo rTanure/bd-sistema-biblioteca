@@ -11,19 +11,13 @@ export const PessoaCreateSchema = z.object({
     .min(3, "O nome deve ter no mínimo 3 caracteres")
     .max(255, "O nome deve ter no máximo 255 caracteres"),
 
-  dataNascimento: z.preprocess((arg) => {
-    if (typeof arg === "string" || arg instanceof Date) {
-      const d = new Date(arg);
-      if (!isNaN(d.getTime())) return d; 
-    }
-    return undefined; 
-  }, z.date({
-    required_error: "A data de nascimento é obrigatória",
-    invalid_type_error: "Data de nascimento inválida",
-  })).refine(
-    (date) => date <= new Date(),
-    "A data de nascimento não pode ser no futuro"
-  ),
+  dataNascimento: z.coerce.date({
+  required_error: "A data de nascimento é obrigatória",
+  invalid_type_error: "Data de nascimento inválida",
+}).refine(
+  (date) => date <= new Date(),
+  "A data de nascimento não pode ser no futuro"
+),
 
   email: z
     .string()

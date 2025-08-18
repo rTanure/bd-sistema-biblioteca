@@ -1,10 +1,13 @@
 export interface Pessoa {
- id: number;
- nome: string;
- data_de_nascimento: string;
- e_mail: string;
- cpf: string;
- senha: string;
+
+  readonly id: number;
+  nome: string;
+  data_de_nascimento: Date;
+  e_mail: string;
+  idade?: number;
+  cpf: string;
+  senha: string;
+
 }
 
 export const CREATE_PESSOA_TABLE = `

@@ -11,6 +11,5 @@ export const UsuarioSchema = z.object({
 });
 
 export type UsuarioCreateDto = z.infer<typeof UsuarioSchema>;
-
-export const UsuarioUpdateSchema = UsuarioSchema;
+export const UsuarioUpdateSchema = UsuarioSchema.partial();
 export type UsuarioUpdateDto = z.infer<typeof UsuarioUpdateSchema>;
