@@ -18,25 +18,25 @@ export const CREATE_BIBLIOTECARIO_TABLE = `
    );
 `;
 
-const INSERT_BIBLIOTECARIO = `
+export const INSERT_BIBLIOTECARIO = `
   INSERT INTO bibliotecario (area_especializacao, crb_numero, descricao_especializacao)
   VALUES ($1, $2, $3)
   RETURNING *;
 `;
 
-const SELECT_BIBLIOTECARIO_BY_ID = `
+export const SELECT_BIBLIOTECARIO_BY_ID = `
   SELECT * FROM bibliotecario 
   WHERE id_pessoa = $1;
 `;
 
-const UPDATE_BIBLIOTECARIO = `
+export const UPDATE_BIBLIOTECARIO = `
   UPDATE bibliotecario 
   SET area_especializacao = $2, crb_numero = $3, descricao_especializacao = $4
   WHERE id_pessoa = $1
   RETURNING *;
 `;
 
-const DELETE_BIBLIOTECARIO = `
+export const DELETE_BIBLIOTECARIO = `
   DELETE FROM bibliotecario 
   WHERE id_pessoa = $1
   RETURNING *;
