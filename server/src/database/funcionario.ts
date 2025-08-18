@@ -23,8 +23,10 @@ export const CREATE_FUNCIONARIO_TABLE = `
 `;
 
 export const INSERT_FUNCIONARIO = `
+<<<<<<< HEAD
   INSERT INTO funcionario (id_pessoa, matricula, data_admissao, salario, turno, cargo)
   VALUES ($1, $2, $3, 4$, 5$, $6)
+
   RETURNING *;
 `;
 
