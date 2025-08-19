@@ -6,8 +6,11 @@ import { generateLoginResponse } from './utils/authUtils';
 import { executeQuerySingleResult} from '../../database/queries';
 import { Pessoa,INSERT_PESSOA, FIND_BY_EMAIL} from '../../database/pessoa';
 import { PessoaCreateDto } from './dto/PessoaCreateDto';
+import { UsuarioService } from '../usuario/usuario.service';
+import { UsuarioCreateDto } from '../usuario/dto/UsuarioCreateDto';
 
 export class AuthService {
+    usuarioService = new UsuarioService;
 
     async login(userInfo:LoginDto):Promise<LoginResponseDto> {
         const user = await executeQuerySingleResult<Pessoa>(FIND_BY_EMAIL, [userInfo.e_mail]);
@@ -31,6 +34,16 @@ export class AuthService {
         data.senha = hashPassword;
         const user = await executeQuerySingleResult<Pessoa>(INSERT_PESSOA,[data.nome,data.dataNascimento,data.email, data.cpf, data.senha]);
         const response = generateLoginResponse(user)
+
+
+        const createUserDto: UsuarioCreateDto = {
+            id_pessoa: user!.id,    
+            data_cadastro: new Date().toISOString().split("T")[0],
+            status_conta: "Ativo"
+        }
+
+        this.usuarioService.createUser(createUserDto);
+
         return response;
     }
 }
