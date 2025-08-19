@@ -9,9 +9,10 @@ import { EntityNotFoundError } from "../../exception/EntityNotFoundError";
 export class SecretarioService {
   async createSecretario(secretario: SecretarioCreateDto): Promise<SecretarioResponseDto> {
     const secretarioDb = await executeQuerySingleResult<Secretario>(INSERT_SECRETARIO, [
-      secretario.area_atuacao,
-      secretario.ramal_telefonico,
-      secretario.nivel_acesso_sistema,
+        secretario.id_pessoa,
+        secretario.area_atuacao,
+        secretario.ramal_telefonico,
+        secretario.nivel_acesso_sistema,
     ]);
 
     if (!secretarioDb) {
