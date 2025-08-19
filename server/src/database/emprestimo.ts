@@ -46,7 +46,7 @@ export const UPDATE_EMPRESTIMO_REGISTRAR_DEVOLUCAO = `
   SET 
     Status = 'DEVOLVIDO', 
     Data_real_devolucao = NOW(), 
-    Valor_multa = $4 -- O valor da multa é o 4º parâmetro
+    Valor_multa = $4 
   WHERE 
     ID_Usuario = $1 AND 
     ID_Publicacao = $2 AND 
