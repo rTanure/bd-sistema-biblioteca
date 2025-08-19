@@ -3,9 +3,8 @@ import { z } from "zod";
 export const ListadedesejoCreateSchema = z.object({
   id_usuario: z.number(),
   nome_lista: z.string()
-    .min(2, "Nome da lista deve ter ao menos 2 caracteres")
     .optional()
-    .default("Minha Lista de Desejos"),
+
 });
 
 export const ListadedesejoUpdateSchema = z.object({
