@@ -14,11 +14,10 @@ export const CREATE_LISTA_DE_DESEJOS_TABLE = `
 `;
 
 export const INSERT_LISTA = `
-  INSERT INTO lista_de_desejos (nome_lista)
-  VALUES ($1)
+  INSERT INTO lista_de_desejos (id_usuario, nome_lista)
+  VALUES ($1, $2)
   RETURNING *;
 `;
-
 export const SELECT_LISTA_BY_ID = `
   SELECT * FROM lista_de_desejos 
   WHERE id_usuario = $1;

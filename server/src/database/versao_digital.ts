@@ -11,7 +11,7 @@ export const CREATE_VERSAO_DIGITAL_TABLE = `
         id_versao_digital SERIAL PRIMARY KEY,
         id_exemplar INT NOT NULL UNIQUE,
         formato_arquivo VARCHAR(20),
-        tamanho_arquivo_mb NUMERIC(10, 2),
+        tamanho_arquivo NUMERIC(10, 2),
         url_acesso TEXT NOT NULL,
         FOREIGN KEY (id_exemplar) REFERENCES exemplar(id_exemplar) ON DELETE CASCADE
     );
@@ -40,4 +40,22 @@ export const UPDATE_VERSAO_DIGITAL = `
 
 export const DELETE_VERSAO_DIGITAL = `
     DELETE FROM versao_digital WHERE id_versao_digital = $1;
+`;
+
+export const DETALHES_OBRA_DIGITAL = `
+  SELECT 
+    VD.ID_VERSAO_DIGITAL,
+    VD.FORMATO_ARQUIVO,
+    VD.URL_ACESSO,
+    E.ID_EXEMPLAR,
+    E.STATUS,
+    P.ID_PUBLICACAO,
+    P.TITULO,
+    P.AUTOR,
+    P.EDITORA,
+    P.ANO_PUBLICACAO
+  FROM VERSAO_DIGITAL VD
+  JOIN EXEMPLAR E ON VD.ID_EXEMPLAR = E.ID_EXEMPLAR
+  JOIN PUBLICACAO P ON E.ID_PUBLICACAO = P.ID_PUBLICACAO
+  WHERE VD.ID_VERSAO_DIGITAL = $1
 `;

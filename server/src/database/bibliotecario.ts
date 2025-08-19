@@ -19,8 +19,8 @@ export const CREATE_BIBLIOTECARIO_TABLE = `
 `;
 
 export const INSERT_BIBLIOTECARIO = `
-  INSERT INTO bibliotecario (area_especializacao, crb_numero, descricao_especializacao)
-  VALUES ($1, $2, $3)
+  INSERT INTO bibliotecario (id_pessoa,area_especializacao, crb_numero, descricao_especializacao)
+  VALUES ($1, $2, $3, $4)
   RETURNING *;
 `;
 
