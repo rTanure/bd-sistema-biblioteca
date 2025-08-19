@@ -17,6 +17,8 @@ import funcionarioRouter from "./modules/funcionario/funcionario.routes";
 import gerenciaRouter from "./modules/gerencia/gerencia.routes";
 import listaDesejoRouter from "./modules/listadedesejo/listadedesejo.routes";
 import pessoaRouter from "./modules/pessoa/pessoa.routes";
+import doadorRouter from "./modules/doador/doador.routes";
+import orgaoexternoRouter from "./modules/orgaoexterno/orgaoexterno.routes";
 
 const express = require('express');
 const  app = express();
@@ -41,6 +43,8 @@ app.use('/publicacoes',publicacaoRouter);
 app.use('/secretarios',userRouter);
 app.use('/digitais',versaoDigitalRouter);
 app.use('/fisicos',versaoFisicaRouter);
+app.use('/doadores',doadorRouter);
+app.use('/orgaoexterno',orgaoexternoRouter);
 
 
 app.use(errorHandler);
