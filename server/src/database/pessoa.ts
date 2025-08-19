@@ -3,6 +3,7 @@ export interface Pessoa {
   readonly id: number;
   nome: string;
   data_de_nascimento: Date;
+  idDoador: number;
   e_mail: string;
   idade?: number;
   cpf: string;
@@ -18,7 +19,7 @@ export const CREATE_PESSOA_TABLE = `
        e_mail VARCHAR(100) UNIQUE,
        cpf VARCHAR(11) UNIQUE NOT NULL, 
        senha VARCHAR(255) NOT NULL,
-       ID_Doador INT NOT NULL UNIQUE
+       ID_Doador INT NOT NULL UNIQUE,
        CONSTRAINT fk_pessoa_doador
         FOREIGN KEY (ID_Doador) REFERENCES DOADOR(ID_Doador)
         ON DELETE CASCADE ON UPDATE CASCADE
@@ -44,11 +45,16 @@ export const SELECT_PESSOA_BY_ID = `
 
 export const UPDATE_PESSOA = `
   UPDATE pessoa 
-  SET nome = $2, data_de_nascimento = $3, e_mail = $4, cpf = $5, senha = $6
+  SET 
+    nome = $2, 
+    data_de_nascimento = $3, 
+    e_mail = $4, 
+    cpf = $5, 
+    senha = $6,
+    ID_Doador = $7
   WHERE id = $1
   RETURNING *;
 `;
-
 export const DELETE_PESSOA = `
   DELETE FROM pessoa 
   WHERE id = $1

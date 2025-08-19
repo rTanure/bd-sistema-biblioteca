@@ -6,6 +6,8 @@ import { PessoaResponseDto } from "../auth/dto/PessoaResponseDto";
 import { PessoaMapper } from "../auth/dto/mapper/PessoaMapper";
 
 
+
+
 export class PessoaService {
 
   async getPessoaById(pessoaId: number){
@@ -35,7 +37,8 @@ export class PessoaService {
         data.data_de_nascimento,
         data.e_mail,
         data.cpf,
-        data.senha
+        data.senha,
+        data.idDoador
     ]) as Pessoa;
 
     return PessoaMapper.toResponseDto(pessoa);
