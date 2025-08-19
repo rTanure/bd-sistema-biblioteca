@@ -15,7 +15,7 @@ export async function getPessoaById(req: Request, res: Response){
 
 export async function updatePessoa(req:Request, res: Response){
     
-    const id =  validateId(req);
+    const id = validateId(req);
     const userId = Number(id);
     const pessoaData = validateSchema(PessoaUpdateSchema, req.body);
     const userUpdated = await pessoaService.updatePessoa(userId, pessoaData);

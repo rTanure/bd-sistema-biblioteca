@@ -12,18 +12,9 @@ export const CREATE_DOADOR_TABLE = `
   );
 `;
 
-export const INSERT_DOADOR_PESSOA_FISICA = `
+export const INSERT_DOADOR = `
   INSERT INTO DOADOR (Tipo_pessoa, Recebe_informativos)
-  VALUES ($1, 'PESSOA_FISICA', $2)
-  RETURNING 
-    ID_Doador as "id",
-    Tipo_pessoa as "tipoPessoa", 
-    Recebe_informativos as "recebeInformativos";
-`;
-
-export const INSERT_DOADOR_ORGAO_EXTERNO = `
-  INSERT INTO DOADOR (Tipo_pessoa, Recebe_informativos)
-  VALUES ($1, 'PESSOA_JURIDICA', $2)
+  VALUES ($1, $2)
   RETURNING 
     ID_Doador as "id",
     Tipo_pessoa as "tipoPessoa", 

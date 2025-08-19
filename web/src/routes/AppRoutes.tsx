@@ -1,5 +1,6 @@
 import { Toaster } from "@/components/ui/sonner";
 import { useAuthStore } from "@/hooks/stores/use-auth-store";
+import { appRoutes } from "@/modules/app/app.routes";
 import { authRoutes } from "@/modules/auth/auth.routes";
 import { useEffect } from "react";
 import { BrowserRouter, useNavigate, useRoutes } from "react-router-dom";
@@ -11,8 +12,6 @@ function RoutesWrapper() {
   useEffect(() => {
     if (!user) {
       navigate("/auth")
-    } else {
-      navigate("/app")
     }
 
     console.log("User:", user)  
@@ -20,6 +19,7 @@ function RoutesWrapper() {
 
   const routes = [
     ...authRoutes,
+    ...appRoutes,
     { path: "*", element: <h1>404 - Página não encontrada</h1> },
   ];
 
