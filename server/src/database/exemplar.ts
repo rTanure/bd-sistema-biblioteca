@@ -70,3 +70,46 @@ export const GET_EXEMPLARES_BY_PUBLICACAO = `
     WHERE id_publicacao = $1
     ORDER BY data_aquisicao DESC;
 `;
+
+export const GET_EXEMPLARES_EMPRESTADOS = `
+  SELECT 
+    p.titulo AS "titulo",
+    e.id_exemplar AS "idExemplar",
+    emp.data_emprestimo AS "dataEmprestimo",
+    emp.data_prevista_devolucao AS "dataPrevistaDevolucao",
+    emp.data_real_devolucao AS "dataRealDevolucao"
+  FROM publicacao p
+  JOIN exemplar e ON p.id_publicacao = e.id_publicacao
+  LEFT JOIN emprestimo emp ON e.id_exemplar = emp.id_exemplar
+  WHERE emp.data_real_devolucao IS NULL
+    AND e.status = 'EMPRESTADO'
+  ORDER BY emp.data_prevista_devolucao;
+`;
+
+export const GET_EXEMPLARES_EM_ATRASO = `
+  SELECT 
+    p.titulo AS "titulo",
+    e.id_exemplar AS "idExemplar",
+    emp.data_emprestimo AS "dataEmprestimo",
+    emp.data_prevista_devolucao AS "dataPrevistaDevolucao",
+    emp.data_real_devolucao AS "dataRealDevolucao"
+  FROM publicacao p
+  JOIN exemplar e ON p.id_publicacao = e.id_publicacao
+  LEFT JOIN emprestimo emp ON e.id_exemplar = emp.id_exemplar
+  WHERE emp.data_real_devolucao IS NULL
+    AND e.status = 'EMPRESTADO'
+    AND emp.data_prevista_devolucao < CURRENT_DATE
+  ORDER BY emp.data_prevista_devolucao;
+`;
+
+export const GET_EXEMPLARES_DISPONIVEIS_POR_PUBLICACAO = `
+  SELECT 
+    p.id_publicacao,
+    p.titulo,
+    COUNT(e.id_exemplar) AS total_disponiveis
+  FROM exemplar e
+  JOIN publicacao p ON e.id_publicacao = p.id_publicacao
+  WHERE e.status = 'DISPONIVEL'
+  GROUP BY p.id_publicacao, p.titulo
+  ORDER BY total_disponiveis DESC;
+`;

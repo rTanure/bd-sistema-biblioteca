@@ -23,3 +23,9 @@ export interface ExemplarResponseDto {
   data_aquisicao: string;
   origem_publicacao: "DOACAO" | "COMPRA" | "TRANSFERENCIA" | "OUTRA";
 }
+
+export interface ExemplaresDisponiveisPorPublicacaoDto {
+  id_publicacao: number;
+  titulo: string;
+  total_disponiveis: number;
+}

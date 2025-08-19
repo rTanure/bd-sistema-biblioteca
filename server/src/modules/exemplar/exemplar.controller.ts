@@ -23,6 +23,21 @@ export async function getAllExemplares(req: Request, res: Response) {
   return res.status(200).json(exemplares);
 }
 
+export async function getExemplaresEmprestados(req: Request, res: Response) {
+  const result = await exemplarService.getEmprestados();
+  return res.status(200).json(result);
+}
+
+export async function getExemplaresEmAtraso(req: Request, res: Response) {
+  const result = await exemplarService.getEmAtraso();
+  return res.status(200).json(result);
+}
+
+export async function getExemplaresDisponiveisPorPublicacao(req: Request, res: Response) {
+  const result = await exemplarService.getDisponiveisPorPublicacao();
+  return res.status(200).json(result);
+}
+
 export async function updateExemplar(req: Request, res: Response) {
   const id = Number(req.params.id);
   const parsed = validateSchema(ExemplarUpdateSchema, req.body)

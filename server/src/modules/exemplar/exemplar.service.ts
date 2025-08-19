@@ -7,12 +7,16 @@ import {
     SEARCH_EXEMPLARES_BY_STATUS,
     GET_EXEMPLARES_BY_ORIGEM,
     GET_EXEMPLARES_BY_PUBLICACAO,
+    GET_EXEMPLARES_EMPRESTADOS,
+    GET_EXEMPLARES_EM_ATRASO,
+    GET_EXEMPLARES_DISPONIVEIS_POR_PUBLICACAO,
     Exemplar 
 } from "../../database/exemplar";
 import {
   ExemplarCreateDto,
   ExemplarUpdateDto,
   ExemplarResponseDto,
+  ExemplaresDisponiveisPorPublicacaoDto
 } from "./dto/ExemplarDto";
 import { ExemplarMapper } from "./dto/mapper/ExemplarMapper";
 import {
@@ -83,5 +87,21 @@ export class ExemplarService {
   async getByPublicacao(id_publicacao: number): Promise<ExemplarResponseDto[]> {
     const list = await executeQueryMultipleResults<Exemplar>(GET_EXEMPLARES_BY_PUBLICACAO, [id_publicacao]);
     return list.map(ExemplarMapper.toResponseDto);
+  }
+  
+   async getEmprestados(): Promise<ExemplarResponseDto[]> {
+    const list = await executeQueryMultipleResults<Exemplar>(GET_EXEMPLARES_EMPRESTADOS);
+    return list.map(ExemplarMapper.toResponseDto);
+  }
+
+  async getEmAtraso(): Promise<ExemplarResponseDto[]> {
+    const list = await executeQueryMultipleResults<Exemplar>(GET_EXEMPLARES_EM_ATRASO);
+    return list.map(ExemplarMapper.toResponseDto);
+  }
+
+  async getDisponiveisPorPublicacao(): Promise<ExemplaresDisponiveisPorPublicacaoDto[]> {
+    return await executeQueryMultipleResults<ExemplaresDisponiveisPorPublicacaoDto>(
+      GET_EXEMPLARES_DISPONIVEIS_POR_PUBLICACAO
+    );
   }
 }
