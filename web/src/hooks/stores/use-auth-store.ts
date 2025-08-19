@@ -30,6 +30,7 @@ export const useAuthStore = create<AuthState>()(
       },
 
       register: async (data: PessoaCreateDto) => {
+        console.log(data)
         const res = await authMdl.register(data);
         if (res.data) {
           localStorage.setItem('token', res.data.token);
