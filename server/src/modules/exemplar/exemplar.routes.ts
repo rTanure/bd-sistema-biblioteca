@@ -23,9 +23,6 @@ router.get("/", async (req: Request, res: Response) => {
   await getAllExemplares(req, res);
 });
 
-router.get("/:id", async (req: Request, res: Response) => {
-  await getExemplarById(req, res);
-});
 
 router.get("/emprestados", async (req: Request, res: Response) => {
   await getExemplaresEmprestados(req, res);
@@ -37,20 +34,25 @@ router.get("/atrasados", async (req: Request, res: Response) => {
 
 router.get("/disponiveis-por-publicacao", getExemplaresDisponiveisPorPublicacao);
 
-router.put("/:id", async (req: Request, res: Response) => {
-  await updateExemplar(req, res);
-});
-
-router.delete("/:id", async (req: Request, res: Response) => {
-  await deleteExemplar(req, res);
-});
-
 router.get("/search/status", async (req: Request, res: Response) => {
   await searchExemplaresByStatus(req, res);
 });
 
 router.get("/search/origem", async (req: Request, res: Response) => {
   await getExemplaresByOrigem(req, res);
+});
+
+
+router.get("/:id", async (req: Request, res: Response) => {
+  await getExemplarById(req, res);
+});
+
+router.put("/:id", async (req: Request, res: Response) => {
+  await updateExemplar(req, res);
+});
+
+router.delete("/:id", async (req: Request, res: Response) => {
+  await deleteExemplar(req, res);
 });
 
 router.get("/publicacao/:id_publicacao", async (req: Request, res: Response) => {
