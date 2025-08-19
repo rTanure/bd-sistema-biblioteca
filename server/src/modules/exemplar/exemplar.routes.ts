@@ -8,6 +8,9 @@ import {
   searchExemplaresByStatus,
   getExemplaresByOrigem,
   getExemplaresByPublicacao,
+  getExemplaresEmprestados,
+  getExemplaresEmAtraso,
+  getExemplaresDisponiveisPorPublicacao
 } from "./exemplar.controller";
 
 const router = Router();
@@ -23,6 +26,16 @@ router.get("/", async (req: Request, res: Response) => {
 router.get("/:id", async (req: Request, res: Response) => {
   await getExemplarById(req, res);
 });
+
+router.get("/emprestados", async (req: Request, res: Response) => {
+  await getExemplaresEmprestados(req, res);
+});
+
+router.get("/atrasados", async (req: Request, res: Response) => {
+  await getExemplaresEmAtraso(req, res);
+});
+
+router.get("/disponiveis-por-publicacao", getExemplaresDisponiveisPorPublicacao);
 
 router.put("/:id", async (req: Request, res: Response) => {
   await updateExemplar(req, res);

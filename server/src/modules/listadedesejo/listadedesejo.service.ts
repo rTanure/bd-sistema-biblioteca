@@ -8,9 +8,11 @@ import { EntityNotFoundError } from "../../exception/EntityNotFoundError";
 
 export class ListaDeDesejosService {
   async createLista(lista: ListadedesejoCreateDto): Promise<ListadedesejoResponseDto> {
+
+    const nomeListaFinal = lista.nome_lista ?? "Minha Lista";
     const listaDb = await executeQuerySingleResult<Lista_de_desejos>(INSERT_LISTA, [
       lista.id_usuario,
-      lista.nome_lista,
+      nomeListaFinal,
     ]);
 
     if (!listaDb) {
