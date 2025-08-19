@@ -2,7 +2,7 @@ import axios, { type AxiosResponse } from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-export class ModeloBase {
+export class ModeloBase<Resource, Create extends object, Update extends object> {
   apiURL: string;
   modulePath: string;
 
@@ -58,6 +58,27 @@ export class ModeloBase {
     );
     return response;
   }
+
+  async create(data: Create) {
+    return this.defaultPostRequest<Resource>("/", data);
+  }
+
+  async getById(id: number) {
+    return this.defaultGetRequest<Resource>(`/${id}`);
+  }
+
+  async getAll() {
+    return this.defaultGetRequest<Resource[]>(`/`);
+  }
+
+  async delete(id: number) {
+    return this.defaultDeleteRequest<Resource>(`/${id}`);
+  }
+
+  async update(id: number, data: Update) {
+    return this.defaultPutRequest<Resource>(`/${id}`, data);
+  }
+
 }
 
 export interface ISpringResponse<T> {
