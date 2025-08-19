@@ -7,10 +7,12 @@ export interface Publicacao {
   edicao: string;
   numero_paginas: number;
   genero: string;
-  id_doacao: number;
+//  id_doacao?: number;
   id_pessoa: number; 
+ //   origem_publicacao: 'DOACAO' | 'COMPRA' | 'TRANSFERENCIA' | 'OUTRA';
 }
 
+// origem_publicacao VARCHAR(20) NOT NULL CHECK (origem_publicacao IN ('DOACAO', 'COMPRA', 'TRANSFERENCIA', 'OUTRA')),
 
 export const CREATE_PUBLICACAO_TABLE = `
     CREATE TABLE IF NOT EXISTS publicacao (
@@ -22,11 +24,9 @@ export const CREATE_PUBLICACAO_TABLE = `
         edicao VARCHAR(50),
         numero_paginas INTEGER,
         genero VARCHAR(100),
-        id_doacao INTEGER NOT NULL,
         id_pessoa INTEGER NOT NULL,
         id_bibliotecario_cadastro INT,
         data_cadastro DATE DEFAULT CURRENT_DATE,
-        FOREIGN KEY (id_doacao) REFERENCES doacao(id_doacao),
         FOREIGN KEY (id_pessoa) REFERENCES bibliotecario(id_pessoa)
     );
 `;
@@ -35,11 +35,12 @@ export const CREATE_PUBLICACAO_TABLE = `
 export const CREATE_PUBLICACAO = `
     INSERT INTO publicacao (
         titulo, autor, editora, ano_publicacao, edicao, 
-        numero_paginas, genero, id_doacao, id_pessoa
+        numero_paginas, genero, id_pessoa 
     )
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
     RETURNING *;
 `;
+
 
 export const GET_PUBLICACAO_BY_ID = `
     SELECT * FROM publicacao WHERE id_publicacao = $1;
@@ -50,12 +51,18 @@ export const GET_ALL_PUBLICACOES = `
 `;
 
 export const UPDATE_PUBLICACAO = `
-    UPDATE publicacao 
-    SET titulo = $2, autor = $3, editora = $4, ano_publicacao = $5, 
-        edicao = $6, numero_paginas = $7, genero = $8, id_doacao = $9,
-        id_bibliotecario_cadastro = $10, data_cadastro = $11
-    WHERE id_publicacao = $1
-    RETURNING *;
+  UPDATE publicacao 
+  SET titulo = $2,
+      autor = $3,
+      editora = $4,
+      ano_publicacao = $5,
+      edicao = $6,
+      numero_paginas = $7,
+      genero = $8,
+      id_bibliotecario_cadastro = $9,
+      data_cadastro = $10
+  WHERE id_publicacao = $1
+  RETURNING *;
 `;
 
 export const DELETE_PUBLICACAO = `

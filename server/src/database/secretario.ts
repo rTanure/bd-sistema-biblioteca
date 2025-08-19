@@ -20,11 +20,10 @@ export const CREATE_SECRETARIO_TABLE = `
 `;
 
 export const INSERT_SECRETARIO = `
-  INSERT INTO secretario (area_atuacao, ramal_telefonico, nivel_acesso_sistema)
-  VALUES ($1, $2, $3)
+  INSERT INTO secretario (id_pessoa, area_atuacao, ramal_telefonico, nivel_acesso_sistema)
+  VALUES ($1, $2, $3, $4)
   RETURNING *;
 `;
-
 export const SELECT_SECRETARIO_BY_ID = `
   SELECT * FROM secretario 
   WHERE id_pessoa = $1;

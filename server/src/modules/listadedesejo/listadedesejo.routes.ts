@@ -1,27 +1,22 @@
 import { Router, Request, Response } from "express";
-import {
-  createBibliotecario,
-  getBibliotecarioById,
-  updateBibliotecario,
-  deleteBibliotecario,
-} from "./bibliotecario.controller";
+import { createLista, getListaById, updateLista, deleteLista } from "./listadedesejo.controller"
 
 const router = Router();
 
 router.post("/", async (req: Request, res: Response) => {
-  await createBibliotecario(req, res);
+  await createLista(req, res);
 });
 
 router.get("/:id", async (req: Request, res: Response) => {
-  await getBibliotecarioById(req, res);
+  await getListaById(req, res);
 });
 
 router.put("/:id", async (req: Request, res: Response) => {
-  await updateBibliotecario(req, res);
+  await updateLista(req, res);
 });
 
 router.delete("/:id", async (req: Request, res: Response) => {
-  await deleteBibliotecario(req, res);
+  await deleteLista(req, res);
 });
 
 export default router;

@@ -26,7 +26,11 @@ export class BibliotecarioService {
   ): Promise<BibliotecarioResponseDto> {
     const bibDb = await executeQuerySingleResult<Bibliotecario>(
       INSERT_BIBLIOTECARIO,
-      [data.area_especializacao, data.crb_numero, data.descricao_especializacao]
+        [   data.id_pessoa,
+            data.area_especializacao,
+            data.crb_numero,
+            data.descricao_especializacao
+        ]
     );
 
     if (!bibDb) {
