@@ -39,7 +39,7 @@ export class AuthService {
 
 
         const createUserDto: UsuarioCreateDto = {
-            id_pessoa: user!.id,    
+            id_pessoa: user!.id,
             data_cadastro: new Date().toISOString().split("T")[0],
             status_conta: "Ativo"
         }

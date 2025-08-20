@@ -7,44 +7,44 @@ export interface Doacao {
 
 export const CREATE_DOACAO_TABLE = `
   CREATE TABLE IF NOT EXISTS DOACAO (
-    ID_Doacao SERIAL PRIMARY KEY,
-    ID_Doador INTEGER NOT NULL,
-    Data_hora_doacao TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    Descricao TEXT,
+    id_doacao SERIAL PRIMARY KEY,
+    id_doador INTEGER NOT NULL,
+    data_hora_doacao TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    descricao TEXT,
     CONSTRAINT fk_doacao_doador
-      FOREIGN KEY (ID_Doador) 
-      REFERENCES DOADOR(ID_Doador)
+      FOREIGN KEY (id_doador) 
+      REFERENCES DOADOR(id_doador)
       ON DELETE CASCADE ON UPDATE CASCADE
   );
 `;
 
 export const INSERT_DOACAO = `
-  INSERT INTO DOACAO (ID_Doador, Descricao)
+  INSERT INTO DOACAO (id_doador, descricao)
   VALUES ($1, $2)
   RETURNING 
-    ID_Doacao as "id", 
-    ID_Doador as "doadorId", 
-    Data_hora_doacao as "dataHoraDoacao", 
-    Descricao as "descricao";
+    id_doacao as "id", 
+    id_doador as "doadorId", 
+    data_hora_doacao as "dataHoraDoacao", 
+    descricao as "descricao";
 `;
 
 export const SELECT_DOACAO_BY_ID = `
   SELECT 
-    ID_Doacao as "id", 
-    ID_Doador as "doadorId", 
-    Data_hora_doacao as "dataHoraDoacao", 
-    Descricao as "descricao"
+    id_doacao as "id", 
+    id_doador as "doadorId", 
+    data_hora_doacao as "dataHoraDoacao", 
+    descricao as "descricao"
   FROM DOACAO
-  WHERE ID_Doacao = $1;
+  WHERE id_doacao = $1;
 `;
 
 export const SELECT_DOACOES_BY_DOADOR_ID = `
   SELECT 
-    ID_Doacao as "id", 
-    ID_Doador as "doadorId", 
-    Data_hora_doacao as "dataHoraDoacao", 
-    Descricao as "descricao"
+    id_doacao as "id", 
+    id_doador as "doadorId", 
+    data_hora_doacao as "dataHoraDoacao", 
+    descricao as "descricao"
   FROM DOACAO
-  WHERE ID_Doador = $1
-  ORDER BY Data_hora_doacao DESC;
+  WHERE id_doador = $1
+  ORDER BY data_hora_doacao DESC;
 `;

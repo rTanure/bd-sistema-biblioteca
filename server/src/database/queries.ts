@@ -73,6 +73,7 @@ export async function executeQuerySingleResult<T>(text: string, params?: unknown
     const res = await client.query(text, params);
     return res.rows[0] ?? null; 
   } catch (error) {
+    console.error(error)
     throw new DatabaseQueryError(text, params, error); 
   }
   finally {
