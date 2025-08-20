@@ -13,7 +13,7 @@ const pool = new Pool({
 
 import { INSERT_PESSOAS } from "./mocks/pessoas";
 import { INSERT_DOADORES } from "./mocks/doadores";
-
+import { INSERT_USUARIOS } from "./mocks/usuarios";
 /**
  * Executa uma consulta SQL no banco de dados PostgreSQL.
  *
@@ -113,7 +113,8 @@ export async function seedDatabase() {
     await createDatabase();
     await executeQuerySingleResult(INSERT_DOADORES);
     await executeQuerySingleResult(INSERT_PESSOAS);
-
+    await executeQuerySingleResult(INSERT_USUARIOS);
+    
     console.log("Mocks inseridos com sucesso!");
   } catch (err) {
     console.error("Erro ao inserir mocks:", err);
