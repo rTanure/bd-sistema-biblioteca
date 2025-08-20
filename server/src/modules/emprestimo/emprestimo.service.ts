@@ -10,40 +10,47 @@ import {
   SELECT_EMPRESTIMOS_ATIVOS_BY_USUARIO_ID,
   UPDATE_EMPRESTIMO_REGISTRAR_DEVOLUCAO
 } from "../../database/emprestimo";
-import { EmprestimoCreateDto, EmprestimoResponseDto } from "./dto/EmprestimoDto";
+
+import { Exemplar, GET_EXEMPLAR_BY_ID, UPDATE_EXEMPLAR_STATUS } from "../../database/exemplar";
+import { EmprestimoCreateDto, EmprestimoResponseDto, RegistrarDevolucaoDto } from './dto/EmprestimoDto';
 import { EmprestimoMapper } from "./dto/mapper/EmprestimoMapper";
 import { EntityCreationError } from "../../exception/EntityCreationError";
-import { EntityNotFoundError } from "../../exception/EntityNotFoundError";
+import { BadRequestError } from "../../exception/BadRequestError";
 
 export class EmprestimoService {
   async registrarEmprestimo(data: EmprestimoCreateDto): Promise<EmprestimoResponseDto> {
+
+    const exemplar = await executeQuerySingleResult<Exemplar>(GET_EXEMPLAR_BY_ID,[data.exemplarId]);
+    if(exemplar?.status === "EMPRESTADO"){
+      throw new BadRequestError("Exemplar já está emprestado");
+    }
+
     const emprestimo = await executeQuerySingleResult<Emprestimo>(INSERT_EMPRESTIMO, [
       data.usuarioId,
-      data.publicacaoId,
+      data.exemplarId,
       data.dataPrevistaDevolucao,
       data.valorMulta
     ]);
+
+    await executeQueryNoReturn(UPDATE_EXEMPLAR_STATUS,[data.exemplarId, 'EMPRESTADO'])
 
     if (!emprestimo) throw new EntityCreationError("emprestimo");
     return EmprestimoMapper.toResponseDto(emprestimo);
   }
 
-  async registrarDevolucao(usuarioId: number, publicacaoId: number, dataEmprestimo: Date, valorMulta: number): Promise<EmprestimoResponseDto> {
+  async registrarDevolucao(devolucao: RegistrarDevolucaoDto ){
+
+    const exemplar = await executeQuerySingleResult<Exemplar>(GET_EXEMPLAR_BY_ID,[devolucao.exemplarId]);
+    if(exemplar?.status === "DISPONIVEL"){
+      throw new BadRequestError("Exemplar já foi devolvido");
+    }
+    
     await executeQueryNoReturn(UPDATE_EMPRESTIMO_REGISTRAR_DEVOLUCAO, [
-      usuarioId,
-      publicacaoId,
-      dataEmprestimo,
-      valorMulta
+      devolucao.usuarioId,
+      devolucao.exemplarId,
+      devolucao.valorMulta
     ]);
-
-    const emprestimo = await executeQuerySingleResult<Emprestimo>(SELECT_EMPRESTIMO_BY_PK, [
-      usuarioId,
-      publicacaoId,
-      dataEmprestimo
-    ]);
-
-    if (!emprestimo) throw new EntityNotFoundError("Emprestimo", `${usuarioId}-${publicacaoId}-${dataEmprestimo}`);
-    return EmprestimoMapper.toResponseDto(emprestimo);
+    await executeQueryNoReturn(UPDATE_EXEMPLAR_STATUS,[devolucao.exemplarId, 'DISPONIVEL'])
   }
 
   async getEmprestimosAtivosPorUsuario(usuarioId: number): Promise<EmprestimoResponseDto[]> {
@@ -51,3 +58,4 @@ export class EmprestimoService {
     return emprestimos.map(EmprestimoMapper.toResponseDto);
   }
 }
+

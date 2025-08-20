@@ -13,7 +13,7 @@ export async function createExemplar(req: Request, res: Response) {
 }
 
 export async function getExemplarById(req: Request, res: Response) {
-  const id = Number(req.params.id);
+  const id = Number(req.params);
   const exemplarDb = await exemplarService.getById(id);
   return res.status(200).json(exemplarDb);
 }
@@ -39,7 +39,7 @@ export async function getExemplaresDisponiveisPorPublicacao(req: Request, res: R
 }
 
 export async function updateExemplar(req: Request, res: Response) {
-  const id = Number(req.params.id);
+  const id = Number(req.params);
   const parsed = validateSchema(ExemplarUpdateSchema, req.body)
 
   const exemplarUpdated = await exemplarService.update(id, parsed);
@@ -47,7 +47,7 @@ export async function updateExemplar(req: Request, res: Response) {
 }
 
 export async function deleteExemplar(req: Request, res: Response) {
-  const id = Number(req.params.id);
+  const id = Number(req.params);
   await exemplarService.delete(id);
   return res.status(204).send();
 }
@@ -65,7 +65,7 @@ export async function getExemplaresByOrigem(req: Request, res: Response) {
 }
 
 export async function getExemplaresByPublicacao(req: Request, res: Response) {
-  const id_publicacao = Number(req.params.id_publicacao);
+  const id_publicacao = Number(req.params);
   const exemplares = await exemplarService.getByPublicacao(id_publicacao);
   return res.status(200).json(exemplares);
 }

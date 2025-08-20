@@ -5,7 +5,7 @@ export class EmprestimoMapper {
   static toResponseDto(data: Emprestimo): EmprestimoResponseDto {
     return {
       usuarioId: data.usuarioId,
-      publicacaoId: data.publicacaoId,
+      exemplarId: data.exemplarId,
       dataEmprestimo: data.dataEmprestimo,
       dataPrevistaDevolucao: data.dataPrevistaDevolucao,
       dataRealDevolucao: data.dataRealDevolucao,
