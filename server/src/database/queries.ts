@@ -1,15 +1,18 @@
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 dotenv.config();
 import { Pool } from "pg";
-import { DatabaseQueryError } from '../exception/DatabaseQueryError';
-import { TABLES } from './table';
+import { DatabaseQueryError } from "../exception/DatabaseQueryError";
+import { TABLES } from "./table";
 const pool = new Pool({
   host: process.env.DB_HOST,
-  port: Number(process.env.DB_PORT) ,
+  port: Number(process.env.DB_PORT),
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
 });
+
+import { INSERT_PESSOAS } from "./mocks/pessoas";
+import { INSERT_DOADORES } from "./mocks/doadores";
 
 /**
  * Executa uma consulta SQL no banco de dados PostgreSQL.
@@ -34,12 +37,15 @@ const pool = new Pool({
  *
  */
 
-export async function executeQueryMultipleResults<T>(text: string, params?: unknown[]): Promise<T[]> {
+export async function executeQueryMultipleResults<T>(
+  text: string,
+  params?: unknown[]
+): Promise<T[]> {
   const client = await pool.connect();
   try {
     const res = await client.query(text, params);
     return res.rows as T[];
-  }  finally {
+  } finally {
     client.release();
   }
 }
@@ -65,13 +71,15 @@ export async function executeQueryMultipleResults<T>(text: string, params?: unkn
  *   [1]
  * );
  */
-export async function executeQuerySingleResult<T>(text: string, params?: unknown[]): Promise<T | null> {
+export async function executeQuerySingleResult<T>(
+  text: string,
+  params?: unknown[]
+): Promise<T | null> {
   const client = await pool.connect();
   try {
     const res = await client.query(text, params);
-    return res.rows[0] ?? null; 
-  }
-  finally {
+    return res.rows[0] ?? null;
+  } finally {
     client.release();
   }
 }
@@ -87,13 +95,28 @@ export async function executeQuerySingleResult<T>(text: string, params?: unknown
  * // Exemplo de uso: deletar um usuário pelo ID
  * await executeQueryNoReturn("DELETE FROM users WHERE id = $1", [userId]);
  */
-export async function executeQueryNoReturn(text: string, params?: unknown[]): Promise<void> {
+export async function executeQueryNoReturn(
+  text: string,
+  params?: unknown[]
+): Promise<void> {
   const client = await pool.connect();
   try {
     await client.query(text, params);
-  }
-  finally {
+  } finally {
     client.release();
+  }
+}
+
+// ADD os inserts aqui!
+export async function seedDatabase() {
+  try {
+    await createDatabase();
+    await executeQuerySingleResult(INSERT_DOADORES);
+    await executeQuerySingleResult(INSERT_PESSOAS);
+
+    console.log("Mocks inseridos com sucesso!");
+  } catch (err) {
+    console.error("Erro ao inserir mocks:", err);
   }
 }
 
