@@ -13,7 +13,14 @@ export function validateSchema<T>(schema: ZodSchema<T>, data: unknown): T {
 
 export function validateId(req:Request){
 
-  const {id} = req.params;
 
-  return id;
+  // const {id} = req.params;
+  // const userId = (req as any).auth.userId;
+  
+  // if(userId != id){
+  //   throw new ForbiddenAccessError();
+  // }
+
+
+  //return id;
 }

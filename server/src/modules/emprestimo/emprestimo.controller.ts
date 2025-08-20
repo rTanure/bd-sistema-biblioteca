@@ -15,15 +15,11 @@ export async function registrarEmprestimo(req: Request, res: Response) {
 
   return res.status(201).json(emprestimo);
 }
+
 export async function registrarDevolucao(req: Request, res: Response) {
-  const { usuarioId, publicacaoId, dataEmprestimo, valorMulta } = req.body;
-  const emprestimo = await service.registrarDevolucao(
-    Number(usuarioId),
-    Number(publicacaoId),
-    new Date(dataEmprestimo),
-    Number(valorMulta)
-  );
-  return res.status(200).json(emprestimo);
+  const devolucao = req.body;
+  await service.registrarDevolucao(devolucao);
+  return res.status(204).send();
 }
 
 export async function getEmprestimosAtivosPorUsuario(req: Request, res: Response) {

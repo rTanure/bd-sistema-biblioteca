@@ -34,10 +34,12 @@ router.get("/atrasados", async (req: Request, res: Response) => {
 
 router.get("/disponiveis-por-publicacao", getExemplaresDisponiveisPorPublicacao);
 
+//GET /exemplares/search/status?status=DISPONIVEL
 router.get("/search/status", async (req: Request, res: Response) => {
   await searchExemplaresByStatus(req, res);
 });
 
+// GET /exemplares/search/origem?origem=DOACAO
 router.get("/search/origem", async (req: Request, res: Response) => {
   await getExemplaresByOrigem(req, res);
 });

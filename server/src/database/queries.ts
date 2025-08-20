@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import { Pool } from "pg";
+import { DatabaseQueryError } from '../exception/DatabaseQueryError';
 
 const pool = new Pool({
   host: process.env.DB_HOST,
@@ -38,6 +39,8 @@ export async function executeQueryMultipleResults<T>(text: string, params?: unkn
   try {
     const res = await client.query(text, params);
     return res.rows as T[];
+  } catch (error) {
+    throw new DatabaseQueryError(text, params, error); 
   } finally {
     client.release();
   }
@@ -68,8 +71,11 @@ export async function executeQuerySingleResult<T>(text: string, params?: unknown
   const client = await pool.connect();
   try {
     const res = await client.query(text, params);
-    return res.rows[0] ?? null; // retorna o primeiro registro ou null
-  } finally {
+    return res.rows[0] ?? null; 
+  } catch (error) {
+    throw new DatabaseQueryError(text, params, error); 
+  }
+  finally {
     client.release();
   }
 }
@@ -89,7 +95,10 @@ export async function executeQueryNoReturn(text: string, params?: unknown[]): Pr
   const client = await pool.connect();
   try {
     await client.query(text, params);
-  } finally {
+  } catch (error) {
+    throw new DatabaseQueryError(text, params, error); 
+  }
+  finally {
     client.release();
   }
 }

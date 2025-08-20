@@ -14,7 +14,7 @@ export const CREATE_DOADOR_TABLE = `
 
 export const INSERT_DOADOR = `
   INSERT INTO DOADOR (Tipo_pessoa, Recebe_informativos)
-  VALUES ($1, $2)
+  VALUES ($1,$2)
   RETURNING 
     ID_Doador as "id",
     Tipo_pessoa as "tipoPessoa", 
