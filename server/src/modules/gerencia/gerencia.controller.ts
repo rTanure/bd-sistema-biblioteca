@@ -3,6 +3,15 @@ import { GerenciaService } from "./gerencia.service";
 import { validateSchema } from "../../utils/validateRequest";
 import { GerenciaCreateSchema, GerenciaUpdateSchema } from "./dto/GerenciaDto";
 
+
+// export interface Gerencia {
+//   id_pessoa: number;
+//   id_publicacao: number;
+//   data_verificacao: string;
+//   observacao: string;
+//   descricao: string;
+// }
+
 const service = new GerenciaService();
 
 export async function createGerencia(req: Request, res: Response) {

@@ -16,13 +16,13 @@ export async function createDoador(req: Request, res: Response) {
 }
 
 export async function getDoadorById(req: Request, res: Response) {
-  const id = Number(req.params.id);
+  const id = Number(req.params);
   const result = await service.getById(id);
   return res.status(200).json(result);
 }
 
 export async function updateDoador(req: Request, res: Response) {
-  const id = Number(req.params.id);
+  const id = Number(req.params);
   const parsed = DoadorUpdateSchema.safeParse(req.body);
   if (!parsed.success) return res.status(400).json(parsed.error.format());
 
@@ -31,7 +31,7 @@ export async function updateDoador(req: Request, res: Response) {
 }
 
 export async function deleteDoador(req: Request, res: Response) {
-  const id = Number(req.params.id);
+  const id = Number(req.params);
   await service.delete(id);
   return res.status(204).send();
 }

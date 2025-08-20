@@ -1,17 +1,28 @@
-import Layout from "@/components/layout";
+import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
+import { useAuthStore } from "@/hooks/stores/use-auth-store";
+import { appRoutes } from "@/modules/app/app.routes";
 import { authRoutes } from "@/modules/auth/auth.routes";
-import { BrowserRouter, useRoutes } from "react-router-dom";
+import path from "path";
+import { useEffect } from "react";
+import { BrowserRouter, Navigate, useNavigate, useRoutes } from "react-router-dom";
 
 function RoutesWrapper() {
+  const navigate = useNavigate()
+  const { user } = useAuthStore()
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/auth")
+    }
+
+    console.log("User:", user)  
+  }, [user, navigate])
+
   const routes = [
     ...authRoutes,
-    // {
-    //   element: <Layout />,   // todas essas terão Navbar/Footer
-    //   children: [
-    //     ...userRoutes,
-    //   ],
-    // },
+    ...appRoutes,
+    { path: "/", element: <Navigate to="/app" replace /> },
     { path: "*", element: <h1>404 - Página não encontrada</h1> },
   ];
 

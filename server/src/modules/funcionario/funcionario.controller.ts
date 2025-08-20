@@ -1,6 +1,6 @@
 import { Request, Response} from "express";
 import {FuncionarioService} from "./funcionario.service"
-import { validateSchema, validateId } from "../../utils/validateRequest";
+import { validateSchema} from "../../utils/validateRequest";
 import { FuncionarioSchema, FuncionarioUpdateSchema} from "./dto/FuncionarioCreateDto";
 
 const funcionarioService = new FuncionarioService;
@@ -22,7 +22,7 @@ export async function getFuncionarioById(req: Request, res: Response){
 
 export async function updateFuncionario(req:Request, res: Response){
     
-    const id =  validateId(req);
+    const {id} = req.params;
     const funcionarioId = Number(id);
     const funcionarioData = validateSchema(FuncionarioUpdateSchema, req.body);
     const funcionarioUpdated = await funcionarioService.updateFuncionario(funcionarioId, funcionarioData);
@@ -30,7 +30,7 @@ export async function updateFuncionario(req:Request, res: Response){
 }
 
 export async function deleteFuncionario(req: Request, res:Response){
-    const id = validateId(req);
+    const {id} = req.params;
     const funcionarioId = Number(id);
     await funcionarioService.deleteFuncionario(funcionarioId);
     return res.status(204).send();

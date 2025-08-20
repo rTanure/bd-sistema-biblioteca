@@ -12,7 +12,7 @@ export async function createPublicacao(req: Request, res: Response) {
 }
 
 export async function getPublicacaoById(req: Request, res: Response) {
-  const id = validateId(req);
+  const {id} = req.params;
   const pub = await service.getPublicacaoById(Number(id));
   return res.status(200).json(pub);
 }
@@ -23,14 +23,15 @@ export async function getAllPublicacoes(req: Request, res: Response) {
 }
 
 export async function updatePublicacao(req: Request, res: Response) {
-  const id = validateId(req);
+  const {id} = req.params;
   const data = validateSchema(PublicacaoUpdateSchema, req.body);
   const pub = await service.updatePublicacao(Number(id), data);
   return res.status(200).json(pub);
 }
 
 export async function deletePublicacao(req: Request, res: Response) {
-  const id = validateId(req);
+  
+  const {id} = req.params;
   await service.deletePublicacao(Number(id));
   return res.status(204).send();
 }
