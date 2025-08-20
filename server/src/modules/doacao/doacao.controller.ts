@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { DoacaoService } from "../doacao/doacao.service";
 import { DoacaoCreateSchema } from "../doacao/dto/DoacaoDto";
 import { validateSchema } from "../../utils/validateRequest";
+import { number } from "zod/v4";
 
 const service = new DoacaoService();
 
@@ -12,8 +13,8 @@ export async function createDoacao(req: Request, res: Response) {
 }
 
 export async function getDoacaoById(req: Request, res: Response) {
-  const id = Number(req.params);
-  const result = await service.getDoacaoById(id);
+  const {id} = (req.params);
+  const result = await service.getDoacaoById(Number(id));
   return res.status(200).json(result);
 }
 

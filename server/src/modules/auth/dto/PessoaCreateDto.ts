@@ -30,7 +30,7 @@ export const PessoaCreateSchema = z.object({
 });
 
 export const PessoaUpdateSchema = PessoaCreateSchema.partial().extend({
-  id_doador: z.number().min(1, "ID do doador inválido"),
+  id_doador: z.number().min(1, "ID do doador inválido").optional(),
 });
 
 export type PessoaCreateDto = z.infer<typeof PessoaCreateSchema>;
