@@ -14,7 +14,7 @@ export const FuncionarioSchema = z.object({
 
 export type FuncionarioCreateDto = z.infer<typeof FuncionarioSchema>;
 
-export const FuncionarioUpdateSchema = FuncionarioSchema;
+export const FuncionarioUpdateSchema = FuncionarioSchema.partial();
 export type FuncionarioUpdateDto = z.infer<typeof FuncionarioUpdateSchema>;
 
 export const FuncionarioResponseSchema = FuncionarioSchema;

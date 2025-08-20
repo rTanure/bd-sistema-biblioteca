@@ -35,7 +35,7 @@ export const SELECT_FUNCIONARIO_BY_ID = `
 
 export const UPDATE_FUNCIONARIO = `
   UPDATE funcionario 
-  SET salario = $3, turno = $4
+  SET salario = $2, turno = $3
   WHERE id_pessoa = $1
   RETURNING *;
 `;

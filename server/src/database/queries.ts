@@ -39,9 +39,7 @@ export async function executeQueryMultipleResults<T>(text: string, params?: unkn
   try {
     const res = await client.query(text, params);
     return res.rows as T[];
-  } catch (error) {
-    throw new DatabaseQueryError(text, params, error); 
-  } finally {
+  }  finally {
     client.release();
   }
 }
@@ -72,9 +70,6 @@ export async function executeQuerySingleResult<T>(text: string, params?: unknown
   try {
     const res = await client.query(text, params);
     return res.rows[0] ?? null; 
-  } catch (error) {
-    console.error(error)
-    throw new DatabaseQueryError(text, params, error); 
   }
   finally {
     client.release();
@@ -96,8 +91,6 @@ export async function executeQueryNoReturn(text: string, params?: unknown[]): Pr
   const client = await pool.connect();
   try {
     await client.query(text, params);
-  } catch (error) {
-    throw new DatabaseQueryError(text, params, error); 
   }
   finally {
     client.release();
