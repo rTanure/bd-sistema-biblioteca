@@ -20,6 +20,7 @@ import pessoaRouter from "./modules/pessoa/pessoa.routes";
 import doadorRouter from "./modules/doador/doador.routes";
 import orgaoexternoRouter from "./modules/orgaoexterno/orgaoexterno.routes";
 import { createDatabase } from './database/queries';
+import secretarioRouter from "./modules/secretario/secretario.routes";
 
 const express = require('express');
 const  app = express();
@@ -41,7 +42,7 @@ app.use('/gerencia',gerenciaRouter);
 app.use('/lista-de-desejos',listaDesejoRouter );
 app.use('/pessoas',pessoaRouter);
 app.use('/publicacoes',publicacaoRouter);
-app.use('/secretarios',userRouter);
+app.use('/secretarios',secretarioRouter);
 app.use('/digitais',versaoDigitalRouter);
 app.use('/fisicos',versaoFisicaRouter);
 app.use('/doadores',doadorRouter);

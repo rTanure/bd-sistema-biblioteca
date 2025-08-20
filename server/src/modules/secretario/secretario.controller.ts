@@ -6,7 +6,9 @@ import {SecretarioCreateSchema, SecretarioUpdateSchema} from "./dto/SecretarioCr
 const secretarioService = new SecretarioService();
 
 export async function createSecretario(req: Request, res: Response) {
+  console.log("aqui2")
   const data = validateSchema(SecretarioCreateSchema, req.body);
+  console.log("Aqui")
   const secretario = await secretarioService.createSecretario(data);
   return res.status(201).json(secretario);
 }
