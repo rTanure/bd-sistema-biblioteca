@@ -85,10 +85,9 @@ export const GET_EXEMPLARES_EMPRESTADOS = `
     emp.Data_emprestimo AS "dataEmprestimo",
     emp.Data_prevista_devolucao AS "dataPrevistaDevolucao",
     emp.Data_real_devolucao AS "dataRealDevolucao"
-  FROM publicacao p
-  JOIN exemplar e ON p.id_publicacao = e.id_publicacao
-  JOIN emprestimo emp 
-    ON e.id_publicacao = emp.ID_Publicacao
+  FROM exemplar e
+  JOIN publicacao p ON e.id_publicacao = p.id_publicacao
+  JOIN emprestimo emp ON e.id_exemplar = emp.id_exemplar
   WHERE e.status = 'EMPRESTADO'
     AND emp.Data_real_devolucao IS NULL
   ORDER BY emp.Data_prevista_devolucao;
@@ -100,8 +99,8 @@ export const GET_EXEMPLARES_EM_ATRASO = `
     emp.data_emprestimo AS "dataEmprestimo",
     emp.data_prevista_devolucao AS "dataPrevistaDevolucao",
     emp.data_real_devolucao AS "dataRealDevolucao"
-  FROM publicacao p
-  JOIN exemplar e ON p.id_publicacao = e.id_publicacao
+  FROM exemplar e
+  JOIN publicacao p ON e.id_publicacao = p.id_publicacao
   LEFT JOIN emprestimo emp ON e.id_exemplar = emp.id_exemplar
   WHERE emp.data_real_devolucao IS NULL
     AND e.status = 'EMPRESTADO'
