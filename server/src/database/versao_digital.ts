@@ -33,7 +33,7 @@ export const GET_ALL_VERSOES_DIGITAIS = `
 
 export const UPDATE_VERSAO_DIGITAL = `
     UPDATE versao_digital
-    SET id_exemplar = $2, formato_arquivo = $3, tamanho_arquivo_mb = $4, url_acesso = $5
+    SET id_exemplar = $2, formato_arquivo = $3, tamanho_arquivo = $4, url_acesso = $5
     WHERE id_versao_digital = $1
     RETURNING *;
 `;
@@ -42,20 +42,3 @@ export const DELETE_VERSAO_DIGITAL = `
     DELETE FROM versao_digital WHERE id_versao_digital = $1;
 `;
 
-export const DETALHES_OBRA_DIGITAL = `
-  SELECT 
-    VD.ID_VERSAO_DIGITAL,
-    VD.FORMATO_ARQUIVO,
-    VD.URL_ACESSO,
-    E.ID_EXEMPLAR,
-    E.STATUS,
-    P.ID_PUBLICACAO,
-    P.TITULO,
-    P.AUTOR,
-    P.EDITORA,
-    P.ANO_PUBLICACAO
-  FROM VERSAO_DIGITAL VD
-  JOIN EXEMPLAR E ON VD.ID_EXEMPLAR = E.ID_EXEMPLAR
-  JOIN PUBLICACAO P ON E.ID_PUBLICACAO = P.ID_PUBLICACAO
-  WHERE VD.ID_VERSAO_DIGITAL = $1
-`;
