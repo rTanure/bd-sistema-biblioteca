@@ -19,7 +19,7 @@ export async function getDoacaoById(req: Request, res: Response) {
 }
 
 export async function getDoacoesByDoador(req: Request, res: Response) {
-  const doadorId = Number(req.params);
+  const doadorId = Number(req.params.doadorId);
   const results = await service.getDoacoesByDoadorId(doadorId);
   return res.status(200).json(results);
 }
