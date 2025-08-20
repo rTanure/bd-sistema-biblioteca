@@ -1,6 +1,5 @@
 import {
-  INSERT_DOADOR_PESSOA_FISICA,
-  INSERT_DOADOR_ORGAO_EXTERNO,
+  INSERT_DOADOR,
   SELECT_DOADOR_BY_ID,
   UPDATE_DOADOR_INFO,
   DELETE_DOADOR,
@@ -21,12 +20,8 @@ import { EntityNotFoundError } from "../../exception/EntityNotFoundError";
 
 export class DoadorService {
   async create(data: DoadorCreateDto): Promise<DoadorResponseDto> {
-    const query =
-      data.tipoPessoa === "PESSOA_FISICA"
-        ? INSERT_DOADOR_PESSOA_FISICA
-        : INSERT_DOADOR_ORGAO_EXTERNO;
-
-    const doador = await executeQuerySingleResult<Doador>(query, [
+  
+    const doador = await executeQuerySingleResult<Doador>(INSERT_DOADOR, [
       data.tipoPessoa,
       data.recebeInformativos,
     ]);
