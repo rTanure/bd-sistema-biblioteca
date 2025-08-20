@@ -8,6 +8,8 @@ import { Pessoa,INSERT_PESSOA, FIND_BY_EMAIL} from '../../database/pessoa';
 import { PessoaCreateDto } from './dto/PessoaCreateDto';
 import { UsuarioService } from '../usuario/usuario.service';
 import { UsuarioCreateDto } from '../usuario/dto/UsuarioCreateDto';
+import { INSERT_USUARIO, Usuario } from '../../database/usuario';
+import { InternalServerError } from '../../exception/InternalServerError';
 
 export class AuthService {
     usuarioService = new UsuarioService;
@@ -33,6 +35,13 @@ export class AuthService {
         const hashPassword = await bcrypt.hash(data.senha, salt);      
         data.senha = hashPassword;
         const user = await executeQuerySingleResult<Pessoa>(INSERT_PESSOA,[data.nome,data.dataNascimento,data.email, data.cpf, data.senha]);
+        this.usuarioService.createUser({
+            data_cadastro: new Date(),
+            id_pessoa: user!.id,
+            status_conta: "Ativo"
+        }).catch((error) => {
+            throw new InternalServerError(error.message)
+        })
         const response = generateLoginResponse(user)
 
 

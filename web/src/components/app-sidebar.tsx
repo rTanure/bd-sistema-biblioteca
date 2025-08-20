@@ -25,6 +25,14 @@ const acoes_pessoa = [
   },
 ]
 
+const acoes_usuario = [
+  {
+    title: "Ver catalogo",
+    url: "/app/catalogo",
+    icon: Home,
+  }
+]
+
 export function AppSidebar() {
   const { user, signOut } = useAuthStore()
 
@@ -36,6 +44,21 @@ export function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               {acoes_pessoa.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild>
+                    <Link to={item.url}>
+                      <item.icon />
+                      <span>{item.title}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+          <SidebarGroupContent>
+            <SidebarGroupLabel>Ações de Usuários</SidebarGroupLabel>
+            <SidebarMenu>
+              {acoes_usuario.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
                     <Link to={item.url}>

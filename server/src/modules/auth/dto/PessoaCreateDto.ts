@@ -1,9 +1,6 @@
 import { z } from "zod";
 
 export const PessoaCreateSchema = z.object({
-    idDoador: z.number().int().positive({
-    message: "O idDoador deve ser um número inteiro positivo"
-  }),
   cpf: z
     .string()
     .length(11, "O CPF deve ter exatamente 11 dígitos") 

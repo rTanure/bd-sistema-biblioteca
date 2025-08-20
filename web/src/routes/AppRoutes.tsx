@@ -1,9 +1,11 @@
+import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
 import { useAuthStore } from "@/hooks/stores/use-auth-store";
 import { appRoutes } from "@/modules/app/app.routes";
 import { authRoutes } from "@/modules/auth/auth.routes";
+import path from "path";
 import { useEffect } from "react";
-import { BrowserRouter, useNavigate, useRoutes } from "react-router-dom";
+import { BrowserRouter, Navigate, useNavigate, useRoutes } from "react-router-dom";
 
 function RoutesWrapper() {
   const navigate = useNavigate()
@@ -20,6 +22,7 @@ function RoutesWrapper() {
   const routes = [
     ...authRoutes,
     ...appRoutes,
+    { path: "/", element: <Navigate to="/app" replace /> },
     { path: "*", element: <h1>404 - Página não encontrada</h1> },
   ];
 

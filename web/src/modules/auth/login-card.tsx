@@ -8,10 +8,12 @@ import type { LoginDto } from "../../../../server/src/modules/auth/dto/LoginDto"
 import { toast } from "sonner";
 import { useState } from "react";
 import { LoaderCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginCard() {
   const { login } = useAuthStore()
   const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate()
   
   
   const {register, handleSubmit} = useForm<LoginDto>()
@@ -19,7 +21,12 @@ export default function LoginCard() {
   const onSubmit = (data: LoginDto) => {
     setIsLoading(true)
     login(data)
-      .then()
+      .then(() => {
+        navigate("/app")
+        toast("Login realizado com sucesso", {
+          closeButton: true
+        })
+      })
       .catch(() => {
         toast("Erro ao fazer login", {
           closeButton: true

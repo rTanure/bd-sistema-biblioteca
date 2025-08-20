@@ -9,10 +9,12 @@ import { useAuthStore } from "@/hooks/stores/use-auth-store";
 import { Activity, ActivityIcon, LoaderCircle } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 export default function RegisterCard() {
   const { register: registerUser } = useAuthStore()
   const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate()
 
 
   const { register, handleSubmit } = useForm<PessoaCreateDto>()
@@ -21,7 +23,12 @@ export default function RegisterCard() {
 
     setIsLoading(true)
     registerUser(data)
-      .then(() => {})
+      .then(() => {
+        toast("Usuário registrado com sucesso", {
+          closeButton: true,
+        })
+        navigate("/app")
+      })
       .catch((error) => {
         toast("Erro ao registrar usuário", {
           closeButton: true,
