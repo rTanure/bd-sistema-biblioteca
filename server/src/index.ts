@@ -19,6 +19,7 @@ import listaDesejoRouter from "./modules/listadedesejo/listadedesejo.routes";
 import pessoaRouter from "./modules/pessoa/pessoa.routes";
 import doadorRouter from "./modules/doador/doador.routes";
 import orgaoexternoRouter from "./modules/orgaoexterno/orgaoexterno.routes";
+import { createDatabase } from './database/queries';
 
 const express = require('express');
 const  app = express();
@@ -27,7 +28,7 @@ app.use(cors(corsOptions));
 
 
 app.use(express.json());
-
+createDatabase()
 app.use('/auth', authRouter);
 app.use('/usuarios',userRouter);
 app.use('/bibliotecarios',bibliotecarioRouter);

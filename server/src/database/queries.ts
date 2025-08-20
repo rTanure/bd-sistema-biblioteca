@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 import { Pool } from "pg";
 import { DatabaseQueryError } from '../exception/DatabaseQueryError';
-
+import { TABLES } from './table';
 const pool = new Pool({
   host: process.env.DB_HOST,
   port: Number(process.env.DB_PORT) ,
@@ -103,3 +103,6 @@ export async function executeQueryNoReturn(text: string, params?: unknown[]): Pr
   }
 }
 
+export async function createDatabase(): Promise<void> {
+  await executeQueryNoReturn(TABLES);
+}
