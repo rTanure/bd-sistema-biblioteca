@@ -15,7 +15,7 @@ export async function createVersaoFisica(req: Request, res: Response) {
 }
 
 export async function getVersaoFisicaById(req: Request, res: Response) {
-  const id = Number(req.params);
+  const id = Number(req.params.id);
   const result = await service.getById(id);
   return res.status(200).json(result);
 }
@@ -26,7 +26,7 @@ export async function getAllVersoesFisicas(req: Request, res: Response) {
 }
 
 export async function updateVersaoFisica(req: Request, res: Response) {
-  const id = Number(req.params);
+  const id = Number(req.params.id);
   const parsed = validateSchema(VersaoFisicaUpdateSchema, req.body)
 
   const result = await service.update(id, parsed);
@@ -34,7 +34,7 @@ export async function updateVersaoFisica(req: Request, res: Response) {
 }
 
 export async function deleteVersaoFisica(req: Request, res: Response) {
-  const id = Number(req.params);
+  const id = Number(req.params.id);
   await service.delete(id);
   return res.status(204).send();
 }
