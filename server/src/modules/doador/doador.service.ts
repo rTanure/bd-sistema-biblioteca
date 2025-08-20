@@ -3,7 +3,8 @@ import {
   SELECT_DOADOR_BY_ID,
   UPDATE_DOADOR_INFO,
   DELETE_DOADOR,
-  Doador
+  Doador,
+  INSERT_DOADOR
 } from "../../database/doador";
 import {
   DoadorCreateDto,
@@ -20,7 +21,7 @@ import { EntityNotFoundError } from "../../exception/EntityNotFoundError";
 
 export class DoadorService {
   async create(data: DoadorCreateDto): Promise<DoadorResponseDto> {
-  
+
     const doador = await executeQuerySingleResult<Doador>(INSERT_DOADOR, [
       data.tipoPessoa,
       data.recebeInformativos,

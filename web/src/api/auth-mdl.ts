@@ -3,7 +3,7 @@ import type { PessoaCreateDto } from "../../../server/src/modules/auth/dto/Pesso
 import type { LoginDto } from "../../../server/src/modules/auth/dto/LoginDto";
 import type { LoginResponseDto } from "../../../server/src/modules/auth/dto/LoginResponseDto";
 
-class AuthMdl extends ModeloBase {
+class AuthMdl extends ModeloBase<object, object, object> {
   constructor() {
     super("/auth");
   }

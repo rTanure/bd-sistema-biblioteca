@@ -32,7 +32,9 @@ export const PessoaCreateSchema = z.object({
     .max(255, "A senha deve ter no máximo 255 caracteres"),
 });
 
-export const PessoaUpdateSchema = PessoaCreateSchema.partial();
+export const PessoaUpdateSchema = PessoaCreateSchema.partial().extend({
+  id_doador: z.number().min(1, "ID do doador inválido"),
+});
 
 export type PessoaCreateDto = z.infer<typeof PessoaCreateSchema>;
 export type PessoaUpdateDto = z.infer<typeof PessoaUpdateSchema>;
