@@ -26,7 +26,7 @@ export async function updatePessoa(req:Request, res: Response){
 }
 
 export async function deletePessoa(req: Request, res:Response){
-    const id = req.params;
+    const id = req.params.id;
     const userId = Number(id);
     await pessoaService.deletePessoa(userId);
     return res.status(204).send();

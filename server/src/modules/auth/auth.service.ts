@@ -35,13 +35,6 @@ export class AuthService {
         const hashPassword = await bcrypt.hash(data.senha, salt);      
         data.senha = hashPassword;
         const user = await executeQuerySingleResult<Pessoa>(INSERT_PESSOA,[data.nome,data.dataNascimento,data.email, data.cpf, data.senha]);
-        this.usuarioService.createUser({
-            data_cadastro: new Date(),
-            id_pessoa: user!.id,
-            status_conta: "Ativo"
-        }).catch((error) => {
-            throw new InternalServerError(error.message)
-        })
         const response = generateLoginResponse(user)
 
 
