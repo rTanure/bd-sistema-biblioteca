@@ -57,7 +57,7 @@ router.delete("/:id", async (req: Request, res: Response) => {
   await deleteExemplar(req, res);
 });
 
-router.get("/publicacao/:id_publicacao", async (req: Request, res: Response) => {
+router.get("/publicacao/:id", async (req: Request, res: Response) => {
   await getExemplaresByPublicacao(req, res);
 });
 
