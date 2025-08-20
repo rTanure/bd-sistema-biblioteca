@@ -44,6 +44,7 @@ export class PublicacaoService {
         merged.edicao,
         merged.numero_paginas,
         merged.genero,
+        merged.id_pessoa,
         new Date()
         ]);
 
