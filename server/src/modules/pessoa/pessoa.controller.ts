@@ -15,15 +15,16 @@ export async function getPessoaById(req: Request, res: Response){
 
 export async function updatePessoa(req:Request, res: Response){
     
-    const id =  validateId(req);
+    const {id} = req.params;
     const userId = Number(id);
+
     const pessoaData = validateSchema(PessoaUpdateSchema, req.body);
     const userUpdated = await pessoaService.updatePessoa(userId, pessoaData);
     return res.status(200).json(userUpdated);
 }
 
 export async function deletePessoa(req: Request, res:Response){
-    const id = validateId(req);
+    const id = req.params;
     const userId = Number(id);
     await pessoaService.deletePessoa(userId);
     return res.status(204).send();

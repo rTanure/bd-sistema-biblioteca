@@ -12,13 +12,13 @@ export async function createDoacao(req: Request, res: Response) {
 }
 
 export async function getDoacaoById(req: Request, res: Response) {
-  const id = Number(req.params.id);
+  const id = Number(req.params);
   const result = await service.getDoacaoById(id);
   return res.status(200).json(result);
 }
 
 export async function getDoacoesByDoador(req: Request, res: Response) {
-  const doadorId = Number(req.params.doadorId);
+  const doadorId = Number(req.params);
   const results = await service.getDoacoesByDoadorId(doadorId);
   return res.status(200).json(results);
 }
