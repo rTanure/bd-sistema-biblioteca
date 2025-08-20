@@ -10,6 +10,7 @@ export interface OrgaoExterno {
 export const CREATE_ORGAO_EXTERNO_TABLE = `
   CREATE TABLE IF NOT EXISTS ORGAO_EXTERNO (
     ID_Orgao SERIAL PRIMARY KEY,
+    ID_Doador INTEGER NOT NULL ,
     Nome_oficial VARCHAR(255) NOT NULL,
     CNPJ VARCHAR(18) UNIQUE NOT NULL,
     Responsavel VARCHAR(255),

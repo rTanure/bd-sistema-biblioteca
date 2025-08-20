@@ -50,6 +50,13 @@ export const UPDATE_EXEMPLAR = `
   RETURNING *;
 `;
 
+export const UPDATE_EXEMPLAR_STATUS = `
+  UPDATE exemplar
+  SET status = $2
+  WHERE id_exemplar = $1
+  RETURNING *;
+`;
+
 export const DELETE_EXEMPLAR = `
     DELETE FROM exemplar WHERE id_exemplar = $1;
 `;
@@ -75,17 +82,17 @@ export const GET_EXEMPLARES_EMPRESTADOS = `
   SELECT 
     p.titulo AS "titulo",
     e.id_exemplar AS "idExemplar",
-    emp.data_emprestimo AS "dataEmprestimo",
-    emp.data_prevista_devolucao AS "dataPrevistaDevolucao",
-    emp.data_real_devolucao AS "dataRealDevolucao"
+    emp.Data_emprestimo AS "dataEmprestimo",
+    emp.Data_prevista_devolucao AS "dataPrevistaDevolucao",
+    emp.Data_real_devolucao AS "dataRealDevolucao"
   FROM publicacao p
   JOIN exemplar e ON p.id_publicacao = e.id_publicacao
-  LEFT JOIN emprestimo emp ON e.id_exemplar = emp.id_exemplar
-  WHERE emp.data_real_devolucao IS NULL
-    AND e.status = 'EMPRESTADO'
-  ORDER BY emp.data_prevista_devolucao;
+  JOIN emprestimo emp 
+    ON e.id_publicacao = emp.ID_Publicacao
+  WHERE e.status = 'EMPRESTADO'
+    AND emp.Data_real_devolucao IS NULL
+  ORDER BY emp.Data_prevista_devolucao;
 `;
-
 export const GET_EXEMPLARES_EM_ATRASO = `
   SELECT 
     p.titulo AS "titulo",

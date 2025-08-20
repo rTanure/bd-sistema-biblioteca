@@ -43,7 +43,6 @@ export class AuthService {
         }
 
         this.usuarioService.createUser(createUserDto);
-
         return response;
     }
 }
