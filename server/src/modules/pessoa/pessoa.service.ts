@@ -5,9 +5,6 @@ import { PessoaUpdateDto } from "../auth/dto/PessoaCreateDto";
 import { PessoaResponseDto } from "../auth/dto/PessoaResponseDto";
 import { PessoaMapper } from "../auth/dto/mapper/PessoaMapper";
 
-
-
-
 export class PessoaService {
 
   async getPessoaById(pessoaId: number){
