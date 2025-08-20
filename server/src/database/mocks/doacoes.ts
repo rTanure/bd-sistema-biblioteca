@@ -1,0 +1,28 @@
+export const INSERT_DOACOES = `
+INSERT INTO public.doacao (id_doacao, id_doador, data_hora_doacao, descricao) VALUES
+(nextval('doacao_id_doacao_seq'::regclass), 1, '2024-02-10 10:15:00', 'Dois livros de ficção científica e um de fantasia.'),
+(nextval('doacao_id_doacao_seq'::regclass), 3, '2024-03-22 14:30:00', 'Caixa com livros diversos, maioria romance.'),
+(nextval('doacao_id_doacao_seq'::regclass), 5, '2024-04-01 09:00:00', 'Coleção de clássicos da literatura brasileira.'),
+(nextval('doacao_id_doacao_seq'::regclass), 8, '2024-05-15 11:20:00', 'Doação de livros infantis e juvenis.'),
+(nextval('doacao_id_doacao_seq'::regclass), 10, '2024-06-18 16:45:00', 'Três livros de história e uma biografia.'),
+(nextval('doacao_id_doacao_seq'::regclass), 1, '2024-07-20 13:00:00', 'Mais alguns livros de ficção.'),
+(nextval('doacao_id_doacao_seq'::regclass), 12, '2024-08-05 17:00:00', 'Livros técnicos sobre programação.'),
+(nextval('doacao_id_doacao_seq'::regclass), 15, '2024-09-30 08:50:00', 'Enciclopédia Barsa completa.'),
+(nextval('doacao_id_doacao_seq'::regclass), 18, '2024-10-11 10:00:00', 'Doação de livros de suspense.'),
+(nextval('doacao_id_doacao_seq'::regclass), 20, '2024-11-25 15:10:00', ''),
+(nextval('doacao_id_doacao_seq'::regclass), 22, '2024-12-02 12:00:00', 'Livros de poesia e filosofia.'),
+(nextval('doacao_id_doacao_seq'::regclass), 25, '2025-01-10 18:00:00', 'Caixa pequena com livros de bolso.'),
+(nextval('doacao_id_doacao_seq'::regclass), 2, '2025-01-28 14:25:00', 'Doação de mangás e quadrinhos.'),
+(nextval('doacao_id_doacao_seq'::regclass), 8, '2025-02-14 09:30:00', 'Mais livros para crianças.'),
+(nextval('doacao_id_doacao_seq'::regclass), 29, '2025-03-03 11:40:00', 'Livros sobre negócios e finanças.'),
+(nextval('doacao_id_doacao_seq'::regclass), 4, '2025-03-15 16:00:00', 'Doação de livros.'),
+(nextval('doacao_id_doacao_seq'::regclass), 15, '2025-04-01 10:15:00', 'Revistas de divulgação científica.'),
+(nextval('doacao_id_doacao_seq'::regclass), 7, '2025-04-22 13:35:00', 'Romances históricos.'),
+(nextval('doacao_id_doacao_seq'::regclass), 11, '2025-05-09 19:00:00', 'Livros de autoajuda.'),
+(nextval('doacao_id_doacao_seq'::regclass), 21, '2025-05-30 15:00:00', 'Material didático do ensino médio.'),
+(nextval('doacao_id_doacao_seq'::regclass), 30, '2025-06-12 12:10:00', 'Dois livros de culinária.'),
+(nextval('doacao_id_doacao_seq'::regclass), 1, '2025-07-01 11:00:00', 'Minha coleção de livros do Stephen King.'),
+(nextval('doacao_id_doacao_seq'::regclass), 18, '2025-07-19 17:50:00', 'Livros que estavam na estante pegando poeira.'),
+(nextval('doacao_id_doacao_seq'::regclass), 26, '2025-08-04 10:00:00', 'Livros de arte e fotografia.'),
+(nextval('doacao_id_doacao_seq'::regclass), 6, CURRENT_TIMESTAMP, 'Cinco livros variados.');
+`;
