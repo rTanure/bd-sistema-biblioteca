@@ -18,7 +18,7 @@ export const CREATE_VERSAO_DIGITAL_TABLE = `
 `;
 
 export const CREATE_VERSAO_DIGITAL = `
-    INSERT INTO versao_digital (id_exemplar, formato_arquivo, tamanho_arquivo_mb, url_acesso)
+    INSERT INTO versao_digital (id_exemplar, formato_arquivo, tamanho_arquivo, url_acesso)
     VALUES ($1, $2, $3, $4)
     RETURNING *;
 `;
