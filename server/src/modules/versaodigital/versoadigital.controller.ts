@@ -23,14 +23,14 @@ export async function getAllVersoesDigitais(req: Request, res: Response) {
 }
 
 export async function updateVersaoDigital(req: Request, res: Response) {
-  const id = Number(req.params.id);
+  const id = Number(req.params);
   const parsed = validateSchema(VersaoDigitalUpdateSchema, req.body)
   const result = await service.update(id, parsed);
   return res.status(200).json(result);
 }
 
 export async function deleteVersaoDigital(req: Request, res: Response) {
-  const id = Number(req.params.id);
+  const id = Number(req.params);
   await service.delete(id);
   return res.status(204).send();
 }

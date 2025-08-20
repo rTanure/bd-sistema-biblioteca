@@ -22,7 +22,7 @@ export async function getUserById(req: Request, res: Response){
 
 export async function updateUser(req:Request, res: Response){
     
-    const id =  validateId(req);
+    const {id} =  req.params
     const userId = Number(id);
     const userData = validateSchema(UsuarioUpdateSchema, req.body);
     const userUpdated = await usuarioService.updateUsuario(userId, userData);
@@ -30,7 +30,7 @@ export async function updateUser(req:Request, res: Response){
 }
 
 export async function deleteUser(req: Request, res:Response){
-    const id = validateId(req);
+    const {id} = req.params
     const userId = Number(id);
     await usuarioService.deleteUsuario(userId);
     return res.status(204).send();

@@ -33,7 +33,7 @@ export const GET_ALL_VERSOES_DIGITAIS = `
 
 export const UPDATE_VERSAO_DIGITAL = `
     UPDATE versao_digital
-    SET id_exemplar = $2, formato_arquivo = $3, tamanho_arquivo = $4, url_acesso = $5
+    SET id_exemplar = $2, formato_arquivo = $3, tamanho_arquivo_mb = $4, url_acesso = $5
     WHERE id_versao_digital = $1
     RETURNING *;
 `;
