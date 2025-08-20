@@ -1,0 +1,28 @@
+export const INSERT_LISTAS_DE_DESEJOS = `
+INSERT INTO public.lista_de_desejos (id_usuario, nome_lista) VALUES
+(1, 'Livros para Ler em 2025'),
+(2, 'Minha Lista de Desejos'),
+(3, 'Clássicos da Ficção Científica'),
+(4, 'Recomendações de Amigos'),
+(5, 'Leituras Pendentes'),
+(7, 'Para o Aniversário'),
+(8, 'Minha Lista de Desejos'),
+(9, 'Livros de História'),
+(10, 'Fantasia e Aventura'),
+(12, 'Suspense e Mistério'),
+(13, 'Minha Lista de Desejos'),
+(14, 'Não-Ficção'),
+(15, 'Biografias Interessantes'),
+(16, 'Minha Lista de Desejos'),
+(17, 'Leituras da Faculdade'),
+(18, 'Poesia'),
+(20, 'Minha Lista de Desejos'),
+(21, 'Autores Brasileiros'),
+(22, 'Terror e Horror'),
+(23, 'Lista de Leitura'),
+(25, 'Romances para Relaxar'),
+(26, 'Minha Lista de Desejos'),
+(27, 'Filosofia'),
+(28, 'Próximas Leituras'),
+(30, 'Livros que quero comprar');
+`;
