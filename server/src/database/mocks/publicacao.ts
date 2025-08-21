@@ -1,0 +1,35 @@
+export const INSERT_PUBLICACOES = `
+INSERT INTO public.publicacao
+(id_publicacao, titulo, autor, editora, ano_publicacao, edicao, numero_paginas, genero, id_pessoa, id_bibliotecario_cadastro, data_cadastro)
+VALUES
+(1, 'O Último Horizonte', 'Marcos Azevedo', 'Editora Aurora', 2010, '1ª', 320, 'Ficção Científica', 1, 1, CURRENT_DATE),
+(2, 'Sombras da Noite', 'Clara Nunes', 'Luz & Saber', 2012, '2ª', 280, 'Romance', 2, 2, CURRENT_DATE),
+(3, 'A Jornada Infinita', 'Rafael Martins', 'Norte Editorial', 2015, '1ª', 450, 'Fantasia', 3, 3, CURRENT_DATE),
+(4, 'História do Brasil Colonial', 'Ana Beatriz Lopes', 'Raízes', 2018, '3ª', 520, 'História', 4, 1, CURRENT_DATE),
+(5, 'Vida de um Sonhador', 'Pedro Henrique Costa', 'Novo Mundo', 2011, '1ª', 210, 'Biografia', 5, 2, CURRENT_DATE),
+(6, 'Algoritmos e Estruturas', 'João Silva', 'TechBooks', 2020, '2ª', 600, 'Técnico', 6, 4, CURRENT_DATE),
+(7, 'No Coração da Selva', 'Larissa Gomes', 'Editora Verde', 2013, '1ª', 300, 'Aventura', 7, 5, CURRENT_DATE),
+(8, 'Luzes do Amanhã', 'Felipe Rocha', 'Horizonte', 2019, '2ª', 370, 'Ficção Científica', 8, 6, CURRENT_DATE),
+(9, 'Entre Linhas', 'Carolina Dias', 'Ponto & Vírgula', 2017, '1ª', 250, 'Romance', 9, 7, CURRENT_DATE),
+(10, 'Guia de Programação Java', 'Ricardo Alves', 'TechBooks', 2014, '4ª', 520, 'Técnico', 10, 8, CURRENT_DATE),
+(11, 'As Crônicas Perdidas', 'Tatiane Ramos', 'Editora Mística', 2021, '1ª', 410, 'Fantasia', 11, 9, CURRENT_DATE),
+(12, 'Guerra e Diplomacia', 'Fernando Lima', 'Atlas', 2016, '2ª', 330, 'História', 12, 10, CURRENT_DATE),
+(13, 'A Arte de Criar', 'Juliana Ferreira', 'Inspira', 2022, '1ª', 190, 'Autoajuda', 13, 1, CURRENT_DATE),
+(14, 'Planetas e Estrelas', 'Rodrigo Farias', 'Cosmos', 2009, '3ª', 480, 'Ciência', 14, 2, CURRENT_DATE),
+(15, 'Memórias de um Viajante', 'Luiz Fernando Prado', 'Horizonte', 2011, '1ª', 230, 'Biografia', 15, 3, CURRENT_DATE),
+(16, 'Teorias da Educação', 'Patrícia Carvalho', 'Saber+', 2018, '2ª', 360, 'Educação', 16, 4, CURRENT_DATE),
+(17, 'Segredos do Oceano', 'Bruno Torres', 'Maresia', 2013, '1ª', 290, 'Aventura', 17, 5, CURRENT_DATE),
+(18, 'Introdução ao Machine Learning', 'Gabriel Souza', 'TechBooks', 2021, '1ª', 580, 'Técnico', 18, 6, CURRENT_DATE),
+(19, 'O Reino Esquecido', 'Camila Duarte', 'Fantasia & Magia', 2017, '2ª', 430, 'Fantasia', 19, 7, CURRENT_DATE),
+(20, 'Política e Sociedade', 'André Barbosa', 'Atlas', 2019, '1ª', 350, 'História', 20, 8, CURRENT_DATE),
+(21, 'Mindset Criativo', 'Sofia Ribeiro', 'Inspira', 2023, '1ª', 210, 'Autoajuda', 21, 9, CURRENT_DATE),
+(22, 'Astrofísica Básica', 'Diego Correia', 'Cosmos', 2015, '2ª', 500, 'Ciência', 22, 10, CURRENT_DATE),
+(23, 'Narrativas Urbanas', 'Isabela Monteiro', 'Cidade Livre', 2012, '1ª', 270, 'Romance', 23, 1, CURRENT_DATE),
+(24, 'Gestão de Projetos', 'Marcelo Pinto', 'BusinessBooks', 2014, '3ª', 340, 'Administração', 24, 2, CURRENT_DATE),
+(25, 'Mundos Paralelos', 'Vanessa Castro', 'Editora Mística', 2016, '1ª', 410, 'Fantasia', 25, 3, CURRENT_DATE),
+(26, 'Revoluções Industriais', 'Cláudia Moraes', 'Atlas', 2008, '2ª', 390, 'História', 26, 4, CURRENT_DATE),
+(27, 'Comunicação Eficaz', 'Henrique Duarte', 'Saber+', 2020, '1ª', 230, 'Educação', 27, 5, CURRENT_DATE),
+(28, 'Aventuras no Ártico', 'Natália Gomes', 'Maresia', 2011, '1ª', 260, 'Aventura', 28, 6, CURRENT_DATE),
+(29, 'Redes de Computadores', 'Daniel Rocha', 'TechBooks', 2018, '5ª', 600, 'Técnico', 29, 7, CURRENT_DATE),
+(30, 'O Despertar da Luz', 'Helena Alves', 'Aurora', 2024, '1ª', 310, 'Romance', 30, 8, CURRENT_DATE);
+`;

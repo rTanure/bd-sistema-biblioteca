@@ -16,6 +16,12 @@ import { INSERT_DOADORES } from "./mocks/doadores";
 import { INSERT_USUARIOS } from "./mocks/usuarios";
 import {INSERT_LISTAS_DE_DESEJOS} from "./mocks/lista_de_desejos"
 import { INSERT_DOACOES } from "./mocks/doacoes";
+import { INSERT_FUNCIONARIOS  } from "./mocks/fucionarios";
+import { INSERT_PUBLICACOES } from "./mocks/publicacao";
+import {INSERTS_EMPRESTIMOS} from "./mocks/emprestimos";
+import { INSERT_EXEMPLARES} from "./mocks/exemplares";
+import { INSERT_BIBLIOTECARIOS } from "./mocks/bibliotecarios";
+import { INSERTS_CONTEM } from "./mocks/contem";
 
 /**
  * Executa uma consulta SQL no banco de dados PostgreSQL.
@@ -114,11 +120,19 @@ export async function executeQueryNoReturn(
 export async function seedDatabase() {
   try {
     await createDatabase();
+   
+    
     await executeQuerySingleResult(INSERT_DOADORES);
     await executeQuerySingleResult(INSERT_PESSOAS);
     await executeQuerySingleResult(INSERT_USUARIOS);
+    await executeQuerySingleResult(INSERT_FUNCIONARIOS);
+    await executeQuerySingleResult(INSERT_BIBLIOTECARIOS);
+    await executeQuerySingleResult(INSERT_PUBLICACOES);
+    await executeQuerySingleResult(INSERT_EXEMPLARES);
+    await executeQuerySingleResult(INSERTS_EMPRESTIMOS)
     await executeQuerySingleResult(INSERT_LISTAS_DE_DESEJOS);
     await executeQuerySingleResult(INSERT_DOACOES);
+    await executeQuerySingleResult(INSERTS_CONTEM);
 
     console.log("Mocks inseridos com sucesso!");
   } catch (err) {
